@@ -69,4 +69,31 @@ function greenClick() {
   }, 1000)
 }
 
+function redClick() {
+  red.classList.add('red-blur')
+  gameplay.sounds.red.play();
+  setTimeout(function () {
+    red.classList.remove('red-blur')
+  }, 1000)
+}
+
+function yellowClick() {
+  yellow.classList.add('yellow-blur')
+  gameplay.sounds.yellow.play();
+  setTimeout(function () {
+    yellow.classList.remove('yellow-blur')
+  }, 1000)
+}
+
+function blueClick() {
+  blue.classList.add('blue-blur')
+  gameplay.sounds.blue.play();
+  setTimeout(function () {
+    blue.classList.remove('blue-blur')
+  }, 1000)
+}
+
 green.addEventListener('click', greenClick)
+red.addEventListener('click', redClick)
+yellow.addEventListener('click', yellowClick)
+blue.addEventListener('click', blueClick)
