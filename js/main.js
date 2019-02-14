@@ -10,8 +10,10 @@ class Player {
 //Gameplay variable
 let gameplay = {
   level: 0,
+  interval: 1000,
   colors: ['#yellow', '#red', '#green', '#blue'],
   players: [],
+  sequence: [greenShow(), redShow(), yellowShow(), blueShow()],
   sounds: {
     green: new Audio('media/sfx_sounds_Blip1.wav'),
     red: new Audio('media/sfx_sounds_Blip4.wav'),
@@ -54,19 +56,13 @@ function input2() {
   }
 }
 
-//event listener for start button
-startButton.addEventListener('click', function () {
-  input1()
-  input2()
-})
-
 //the color will show and the sound will play when a color div is clicked
 function greenClick() {
   green.classList.add('green-blur')
   gameplay.sounds.green.play();
   setTimeout(function () {
     green.classList.remove('green-blur')
-  }, 1000)
+  }, gameplay.interval)
 }
 
 function redClick() {
@@ -74,7 +70,7 @@ function redClick() {
   gameplay.sounds.red.play();
   setTimeout(function () {
     red.classList.remove('red-blur')
-  }, 1000)
+  }, gameplay.interval)
 }
 
 function yellowClick() {
@@ -82,7 +78,7 @@ function yellowClick() {
   gameplay.sounds.yellow.play();
   setTimeout(function () {
     yellow.classList.remove('yellow-blur')
-  }, 1000)
+  }, gameplay.interval)
 }
 
 function blueClick() {
@@ -90,10 +86,53 @@ function blueClick() {
   gameplay.sounds.blue.play();
   setTimeout(function () {
     blue.classList.remove('blue-blur')
-  }, 1000)
+  }, gameplay.interval)
+}
+
+//function to automatically have the color blur and sound play
+function greenShow() {
+  green.classList.add('green-blur')
+  gameplay.sounds.green.play();
+  setTimeout(function () {
+    green.classList.remove('green-blur')
+  }, gameplay.interval)
+}
+
+function redShow() {
+  red.classList.add('red-blur')
+  gameplay.sounds.red.play();
+  setTimeout(function () {
+    red.classList.remove('red-blur')
+  }, gameplay.interval)
+}
+
+function yellowShow() {
+  yellow.classList.add('yellow-blur')
+  gameplay.sounds.yellow.play();
+  setTimeout(function () {
+    yellow.classList.remove('yellow-blur')
+  }, gameplay.interval)
+}
+
+function blueShow() {
+  blue.classList.add('blue-blur')
+  gameplay.sounds.blue.play();
+  setTimeout(function () {
+    blue.classList.remove('blue-blur')
+  }, gameplay.interval)
 }
 
 green.addEventListener('click', greenClick)
 red.addEventListener('click', redClick)
 yellow.addEventListener('click', yellowClick)
 blue.addEventListener('click', blueClick)
+
+//event listener for start button
+startButton.addEventListener('click', function () {
+  input1()
+  input2()
+  greenShow()
+  redShow()
+  yellowShow()
+  blueShow()
+})
