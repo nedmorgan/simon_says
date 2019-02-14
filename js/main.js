@@ -10,7 +10,7 @@ class Player {
 //Gameplay variable
 let gameplay = {
   level: 0,
-  colors:['#yellow', '#red', '#green', '#blue'],
+  colors: ['#yellow', '#red', '#green', '#blue'],
   players: [],
   sounds: {
     green: new Audio('media/sfx_sounds_Blip1.wav'),
@@ -30,6 +30,12 @@ let gameplay = {
 let player1 = new Player()
 let player2 = new Player()
 let startButton = document.getElementById('startButton')
+
+//color div variables
+const green = document.getElementById('green')
+const red = document.getElementById('red')
+const yellow = document.getElementById('yellow')
+const blue = document.getElementById('blue')
 
 //input for player 1
 function input1() {
@@ -53,3 +59,14 @@ startButton.addEventListener('click', function () {
   input1()
   input2()
 })
+
+//the color will show and the sound will play when a color div is clicked
+function greenClick() {
+  green.classList.add('green-blur')
+  gameplay.sounds.green.play();
+  setTimeout(function () {
+    green.classList.remove('green-blur')
+  }, 1000)
+}
+
+green.addEventListener('click', greenClick)
