@@ -93,6 +93,10 @@ h3 {
   border-radius: 50%;
 }
 
+.blur {
+  filter: blur(10px);
+}
+
 .yellow {
   background-color: yellow;
 }
