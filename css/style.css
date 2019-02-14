@@ -92,38 +92,38 @@ h3 {
   border-radius: 50%;
 }
 
-.yellow {
+#yellow {
   border: 8px solid yellow;
 }
 
-.yellow-blur {
+#yellow-blur {
   filter: blur(10px);
   background-color: yellow;
 }
 
-.red {
+#red {
   border: 8px solid red;
 }
 
-.red-blur {
+#red-blur {
   filter: blur(10px);
   background-color: red;
 }
 
-.green {
+#green {
   border: 8px solid green;
 }
 
-.green-blur {
+#green-blur {
   filter: blur(10px);
   background-color: green;
 }
 
-.blue {
+#blue {
   border: 8px solid blue;
 }
 
-.blue-blur {
+#blue-blur {
   filter: blur(10px);
   background-color: blue;
 }
