@@ -89,27 +89,42 @@ h3 {
 .game-color {
   height: 200px;
   width: 200px;
-  border: 4px solid whitesmoke;
   border-radius: 50%;
 }
 
-.blur {
-  filter: blur(10px);
+.yellow {
+  border: 8px solid yellow;
 }
 
-.yellow {
+.yellow-blur {
+  filter: blur(10px);
   background-color: yellow;
 }
 
 .red {
+  border: 8px solid red;
+}
+
+.red-blur {
+  filter: blur(10px);
   background-color: red;
 }
 
 .green {
+  border: 8px solid green;
+}
+
+.green-blur {
+  filter: blur(10px);
   background-color: green;
 }
 
 .blue {
+  border: 8px solid blue;
+}
+
+.blue-blur {
+  filter: blur(10px);
   background-color: blue;
 }
 
