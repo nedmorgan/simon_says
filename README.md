@@ -11,9 +11,9 @@ This classic game of memory will test your skills in a progressively faster sequ
 # Wireframe
 
 ### Basic Layout Design
-<img src='media/basic_layout.jpg' alt='basic layout design'/>
+<img src='media/basic_layout.jpg' alt='basic layout design' height=250 width=200/>
 
 ### Advanced Layout Design
-<img src='media/advanced_layout.jpg' alt='advanced layout design'/>
+<img src='media/advanced_layout.jpg' alt='advanced layout design' height=250 width=200/>
 
 # Features

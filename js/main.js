@@ -7,8 +7,8 @@ class Player {
   }
 }
 
-//Gameplay variable
-let gameplay = {
+//game variable
+let game = {
   level: 0,
   interval: 3000,
   colors: [1, 2, 3, 4],
@@ -32,8 +32,8 @@ let defaultGame = {
 
 //this is how to get an audio file to play
 // document.getElementById('resetButton').addEventListener('click', function() {
-//   console.log(gameplay.sounds.green)
-//   gameplay.sounds.blue.play();
+//   console.log(game.sounds.green)
+//   game.sounds.blue.play();
 // })
 
 //new player variables
@@ -66,102 +66,123 @@ function input2() {
 
 //the color will show and the sound will play when a color div is clicked
 function greenClick() {
+  let index = 1
   green.classList.add('green-blur')
-  gameplay.sounds.green.play();
+  game.sounds.green.play();
   setTimeout(function () {
     green.classList.remove('green-blur')
-  }, gameplay.interval)
+  }, game.interval)
+  decreaseTimer()
+  //need to make this specific to each player
+  Player.colorSeq.push(index)
 }
 
 function redClick() {
+  let index = 2
   red.classList.add('red-blur')
-  gameplay.sounds.red.play();
+  game.sounds.red.play();
   setTimeout(function () {
     red.classList.remove('red-blur')
-  }, gameplay.interval)
+  }, game.interval)
+  decreaseTimer()
+  //need to make this specific to each player
+  this.colorSeq.push(index)
 }
 
 function yellowClick() {
+  let index = 3
   yellow.classList.add('yellow-blur')
-  gameplay.sounds.yellow.play();
+  game.sounds.yellow.play();
   setTimeout(function () {
     yellow.classList.remove('yellow-blur')
-  }, gameplay.interval)
+  }, game.interval)
+  decreaseTimer()
+  //need to make this specific to each player
+  this.colorSeq.push(index)
 }
 
 function blueClick() {
+  let index = 4
   blue.classList.add('blue-blur')
-  gameplay.sounds.blue.play();
+  game.sounds.blue.play();
   setTimeout(function () {
     blue.classList.remove('blue-blur')
-  }, gameplay.interval)
+  }, game.interval)
+  decreaseTimer()
+  //need to make this specific to each player
+  this.colorSeq.push(index)
 }
 
 //function to automatically have the color blur and sound play
 function greenShow() {
   green.classList.add('green-blur')
-  gameplay.sounds.green.play();
+  game.sounds.green.play();
   setTimeout(function () {
     green.classList.remove('green-blur')
-  }, gameplay.interval)
+  }, game.interval)
 }
 
 function redShow() {
   red.classList.add('red-blur')
-  gameplay.sounds.red.play();
+  game.sounds.red.play();
   setTimeout(function () {
     red.classList.remove('red-blur')
-  }, gameplay.interval)
+  }, game.interval)
 }
 
 function yellowShow() {
   yellow.classList.add('yellow-blur')
-  gameplay.sounds.yellow.play();
+  game.sounds.yellow.play();
   setTimeout(function () {
     yellow.classList.remove('yellow-blur')
-  }, gameplay.interval)
+  }, game.interval)
 }
 
 function blueShow() {
   blue.classList.add('blue-blur')
-  gameplay.sounds.blue.play();
+  game.sounds.blue.play();
   setTimeout(function () {
     blue.classList.remove('blue-blur')
-  }, gameplay.interval)
+  }, game.interval)
 }
 
-//function to math random through the gameplay array of numbers
+//function to math random through the game array of numbers
 function random() {
   let randomNum = Math.ceil(Math.random() * 4)
   if (randomNum === 1) {
     greenShow()
-    decreaseTimer()
+    game.sequence.push(randomNum)
   } else if (randomNum === 2) {
     redShow()
-    decreaseTimer()
+    game.sequence.push(randomNum)
   } else if (randomNum === 3) {
     yellowShow()
-    decreaseTimer()
+    game.sequence.push(randomNum)
   } else if (randomNum === 4) {
     blueShow()
-    decreaseTimer()
+    game.sequence.push(randomNum)
   }
   return randomNum
 }
 
 //function to decrease game interval
 function decreaseTimer() {
-  if (gameplay.interval > 0) {
-    gameplay.interval -= 150
-    console.log(gameplay.interval)
-  } else if (gameplay.interval <= 0) {
+  if (game.interval > 0) {
+    game.interval -= 150
+    console.log(game.interval)
+  } else if (game.interval <= 0) {
     alert(`There are no move levels left. You've Won!`)
   }
 }
 
+//async function to activate game
+async function gameplay() {
+
+}
+
 //function to reset the game to start from scratch
 function reset() {
-  gameplay.interval = defaultGame.interval
+  game.interval = defaultGame.interval
   document.getElementById('player-one').innerHTML = defaultGame.player1
   //player2 disappears when button is clicked. Need to fix
   document.getElementById('player-two').innerHTML = defaultGame.player2
