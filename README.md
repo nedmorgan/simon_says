@@ -10,4 +10,10 @@ This classic game of memory will test your skills in a progressively faster sequ
 
 # Wireframe
 
+### Basic Layout Design
+![basic layout design](/Users/nedmorgan/Documents/GitHub/simon_says/media/basic_layout.jpg)
+
+### Advanced Layout Design
+![advanced layout design](/Users/nedmorgan/Documents/GitHub/simon_says/media/advanced_layout.jpg)
+
 # Features
