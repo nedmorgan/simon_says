@@ -9,7 +9,7 @@ class Player {
 
 //game variable
 let game = {
-  level: 0,
+  score: 0,
   interval: 3000,
   colors: [1, 2, 3, 4],
   players: [],
@@ -42,6 +42,9 @@ let defaultGame = {
 let player1 = new Player()
 let player2 = new Player()
 
+//game score variable
+let value = 1
+
 //button variables
 let startButton = document.getElementById('startButton')
 let resetButton = document.getElementById('resetButton')
@@ -55,6 +58,11 @@ const blue = document.getElementById('blue')
 //set current player function
 function curPlayer(name) {
   game.currentPlayer = name
+}
+
+//function to keep score
+function score(num) {
+  game.score += num
 }
 
 //input for player 1
@@ -88,10 +96,15 @@ function greenClick() {
   decreaseTimer()
   if (player1.name === game.currentPlayer) {
     player1.colorSeq.push(index)
-  } else if(player2.name !== null && player2.name === game.currentPlayer) {
+    score(value)
+    player1.score = game.score
+    document.getElementById('one-score').innerHTML = player1.score
+  } else if (player2.name !== null && player2.name === game.currentPlayer) {
     player2.colorSeq.push(index)
+    score(value)
+    player2.score = game.score
+    document.getElementById('two-score').innerHTML = player2.score
   }
-
 }
 
 function redClick() {
@@ -102,8 +115,17 @@ function redClick() {
     red.classList.remove('red-blur')
   }, game.interval)
   decreaseTimer()
-  //need to make this specific to each player
-  // this.colorSeq.push(index)
+  if (player1.name === game.currentPlayer) {
+    player1.colorSeq.push(index)
+    score(value)
+    player1.score = game.score
+    document.getElementById('one-score').innerHTML = player1.score
+  } else if (player2.name !== null && player2.name === game.currentPlayer) {
+    player2.colorSeq.push(index)
+    score(value)
+    player2.score = game.score
+    document.getElementById('two-score').innerHTML = player2.score
+  }
 }
 
 function yellowClick() {
@@ -114,8 +136,17 @@ function yellowClick() {
     yellow.classList.remove('yellow-blur')
   }, game.interval)
   decreaseTimer()
-  //need to make this specific to each player
-  // this.colorSeq.push(index)
+  if (player1.name === game.currentPlayer) {
+    player1.colorSeq.push(index)
+    score(value)
+    player1.score = game.score
+    document.getElementById('one-score').innerHTML = player1.score
+  } else if (player2.name !== null && player2.name === game.currentPlayer) {
+    player2.colorSeq.push(index)
+    score(value)
+    player2.score = game.score
+    document.getElementById('two-score').innerHTML = player2.score
+  }
 }
 
 function blueClick() {
@@ -126,8 +157,17 @@ function blueClick() {
     blue.classList.remove('blue-blur')
   }, game.interval)
   decreaseTimer()
-  //need to make this specific to each player
-  // this.colorSeq.push(index)
+  if (player1.name === game.currentPlayer) {
+    player1.colorSeq.push(index)
+    score(value)
+    player1.score = game.score
+    document.getElementById('one-score').innerHTML = player1.score
+  } else if (player2.name !== null && player2.name === game.currentPlayer) {
+    player2.colorSeq.push(index)
+    score(value)
+    player2.score = game.score
+    document.getElementById('two-score').innerHTML = player2.score
+  }
 }
 
 //function to automatically have the color blur and sound play
