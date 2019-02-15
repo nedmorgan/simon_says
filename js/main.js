@@ -1,8 +1,8 @@
 //player constructor
 class Player {
-  constructor(name, score) {
+  constructor(name) {
     this.name = name
-    this.score = score
+    this.score = 0
     this.colorSeq = []
   }
 }
@@ -15,7 +15,7 @@ let game = {
   players: [],
   currentPlayer: '',
   sequence: [],
-  switch: true,
+  track: false,
   sounds: {
     green: new Audio('media/sfx_sounds_Blip1.wav'),
     red: new Audio('media/sfx_sounds_Blip4.wav'),
@@ -85,20 +85,50 @@ function input2() {
   }
 }
 
+//function to check if arrays match
+function checkArray(arr1, arr2) {
+  if(arr1 === arr2) {
+    game.track = true
+  } else {
+    game.track = false
+  }
+}
+
+//function to decrease game interval
+function decreaseTimer() {
+  if (game.interval > 0) {
+    game.interval -= 150
+    console.log(game.interval)
+  } else if (game.interval <= 0) {
+    alert(`There are no move levels left. You've Won!`)
+  }
+}
+
 //the color will show and the sound will play when a color div is clicked
 function greenClick() {
   let index = 1
   green.classList.add('green-blur')
-  game.sounds.green.play();
+  game.sounds.green.play()
   setTimeout(function () {
     green.classList.remove('green-blur')
   }, game.interval)
   decreaseTimer()
   if (player1.name === game.currentPlayer) {
     player1.colorSeq.push(index)
-    score(value)
-    player1.score = game.score
-    document.getElementById('one-score').innerHTML = player1.score
+    checkArray(game.sequence, player1.colorSeq)
+    console.log(game.track)
+    if (game.track === true) {
+      score(value)
+      player1.score = game.score
+      document.getElementById('one-score').innerHTML = player1.score
+    } else {
+      document.getElementById('best-score').innerHTML = player1.score
+      alert(`Bad Choice. You have lost!`)
+      curPlayer(player2.name)
+      game.interval = defaultGame.interval
+      game.sequence = []
+      game.score = 0
+    }
   } else if (player2.name !== null && player2.name === game.currentPlayer) {
     player2.colorSeq.push(index)
     score(value)
@@ -172,35 +202,43 @@ function blueClick() {
 
 //function to automatically have the color blur and sound play
 function greenShow() {
+  let index = 1
   green.classList.add('green-blur')
   game.sounds.green.play();
   setTimeout(function () {
     green.classList.remove('green-blur')
   }, game.interval)
+  game.sequence.push(index)
 }
 
 function redShow() {
+  let index = 2
   red.classList.add('red-blur')
   game.sounds.red.play();
   setTimeout(function () {
     red.classList.remove('red-blur')
   }, game.interval)
+  game.sequence.push(index)
 }
 
 function yellowShow() {
+  let index = 3
   yellow.classList.add('yellow-blur')
   game.sounds.yellow.play();
   setTimeout(function () {
     yellow.classList.remove('yellow-blur')
   }, game.interval)
+  game.sequence.push(index)
 }
 
 function blueShow() {
+  let index = 4
   blue.classList.add('blue-blur')
   game.sounds.blue.play();
   setTimeout(function () {
     blue.classList.remove('blue-blur')
   }, game.interval)
+  game.sequence.push(index)
 }
 
 //function to math random through the game array of numbers
@@ -220,16 +258,6 @@ function random() {
     game.sequence.push(randomNum)
   }
   return randomNum
-}
-
-//function to decrease game interval
-function decreaseTimer() {
-  if (game.interval > 0) {
-    game.interval -= 150
-    console.log(game.interval)
-  } else if (game.interval <= 0) {
-    alert(`There are no move levels left. You've Won!`)
-  }
 }
 
 //async function to activate game
