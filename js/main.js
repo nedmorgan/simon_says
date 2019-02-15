@@ -13,7 +13,9 @@ let game = {
   interval: 3000,
   colors: [1, 2, 3, 4],
   players: [],
+  currentPlayer: '',
   sequence: [],
+  switch: true,
   sounds: {
     green: new Audio('media/sfx_sounds_Blip1.wav'),
     red: new Audio('media/sfx_sounds_Blip4.wav'),
@@ -39,6 +41,8 @@ let defaultGame = {
 //new player variables
 let player1 = new Player()
 let player2 = new Player()
+
+//button variables
 let startButton = document.getElementById('startButton')
 let resetButton = document.getElementById('resetButton')
 
@@ -48,11 +52,18 @@ const red = document.getElementById('red')
 const yellow = document.getElementById('yellow')
 const blue = document.getElementById('blue')
 
+//set current player function
+function curPlayer(name) {
+  game.currentPlayer = name
+}
+
 //input for player 1
 function input1() {
   player1.name = prompt(`Player 1, please input your name.`)
   document.getElementById('player-one').innerHTML = player1.name
   document.getElementById('player-banner').innerHTML = player1.name
+  game.players.push(player1.name)
+  curPlayer(player1.name)
 }
 
 //input for player 2 and if not then take away player 2
@@ -62,6 +73,7 @@ function input2() {
     document.querySelector('.player2-score').setAttribute('style', 'display:none')
   } else {
     document.getElementById('player-two').innerHTML = player2.name
+    game.players.push(player2.name)
   }
 }
 
@@ -74,8 +86,12 @@ function greenClick() {
     green.classList.remove('green-blur')
   }, game.interval)
   decreaseTimer()
-  //need to make this specific to each player
-  // Player.colorSeq.push(index)
+  if (player1.name === game.currentPlayer) {
+    player1.colorSeq.push(index)
+  } else if(player2.name !== null && player2.name === game.currentPlayer) {
+    player2.colorSeq.push(index)
+  }
+
 }
 
 function redClick() {
