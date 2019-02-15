@@ -59,6 +59,13 @@ h3 {
   text-decoration: underline;
 }
 
+p {
+  margin: 0;
+  font-family: "Pricedown W01 Black",
+  sans-serif;
+  font-size: 5.5vw;
+}
+
 .current-flex {
   display: flex;
   flex-direction: column;

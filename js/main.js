@@ -22,6 +22,14 @@ let gameplay = {
   }
 }
 
+//default variable for reset
+let defaultGame = {
+  player1: `Player 1`,
+  player2: `Player 2`,
+  interval: 3000,
+  score: 0
+}
+
 //this is how to get an audio file to play
 // document.getElementById('resetButton').addEventListener('click', function() {
 //   console.log(gameplay.sounds.green)
@@ -32,6 +40,7 @@ let gameplay = {
 let player1 = new Player()
 let player2 = new Player()
 let startButton = document.getElementById('startButton')
+let resetButton = document.getElementById('resetButton')
 
 //color div variables
 const green = document.getElementById('green')
@@ -42,8 +51,7 @@ const blue = document.getElementById('blue')
 //input for player 1
 function input1() {
   player1.name = prompt(`Player 1, please input your name.`)
-  document.getElementById('player1').innerHTML = player1.name
-
+  document.getElementById('player-one').innerHTML = player1.name
 }
 
 //input for player 2 and if not then take away player 2
@@ -52,7 +60,7 @@ function input2() {
   if (player2.name === null) {
     document.querySelector('.player2-score').setAttribute('style', 'display:none')
   } else {
-    document.getElementById('player2').innerHTML = player2.name
+    document.getElementById('player-two').innerHTML = player2.name
   }
 }
 
@@ -151,6 +159,17 @@ function decreaseTimer() {
   }
 }
 
+//function to reset the game to start from scratch
+function reset() {
+  gameplay.interval = defaultGame.interval
+  document.getElementById('player-one').innerHTML = defaultGame.player1
+  //player2 disappears when button is clicked. Need to fix
+  document.getElementById('player-two').innerHTML = defaultGame.player2
+  document.getElementById('one-score').innerHTML = defaultGame.score
+  document.getElementById('two-score').innerHTML = defaultGame.score
+  alert(`Press Start button to begin new game`)
+}
+
 green.addEventListener('click', greenClick)
 red.addEventListener('click', redClick)
 yellow.addEventListener('click', yellowClick)
@@ -160,8 +179,9 @@ blue.addEventListener('click', blueClick)
 startButton.addEventListener('click', function () {
   input1()
   input2()
-  greenShow()
-  redShow()
-  yellowShow()
-  blueShow()
+})
+
+//event listener for reset button
+resetButton.addEventListener('click', function () {
+  reset()
 })
