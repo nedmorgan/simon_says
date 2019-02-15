@@ -11,9 +11,9 @@ class Player {
 let gameplay = {
   level: 0,
   interval: 1000,
-  colors: ['#yellow', '#red', '#green', '#blue'],
+  colors: [1, 2, 3, 4],
   players: [],
-  sequence: [greenShow(), redShow(), yellowShow(), blueShow()],
+  sequence: [],
   sounds: {
     green: new Audio('media/sfx_sounds_Blip1.wav'),
     red: new Audio('media/sfx_sounds_Blip4.wav'),
@@ -120,6 +120,25 @@ function blueShow() {
   setTimeout(function () {
     blue.classList.remove('blue-blur')
   }, gameplay.interval)
+}
+
+//function to math random through the gameplay array of numbers
+function random() {
+  let randomNum = Math.ceil(Math.random() * 4)
+  if (randomNum === 1) {
+    console.log(randomNum)
+    console.log(`green`)
+  } else if (randomNum === 2) {
+    console.log(randomNum)
+    console.log(`red`)
+  } else if (randomNum === 3) {
+    console.log(randomNum)
+    console.log(`yellow`)
+  } else if (randomNum === 4) {
+    console.log(randomNum)
+    console.log(`blue`)
+  }
+  return randomNum
 }
 
 green.addEventListener('click', greenClick)
