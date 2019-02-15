@@ -52,6 +52,7 @@ const blue = document.getElementById('blue')
 function input1() {
   player1.name = prompt(`Player 1, please input your name.`)
   document.getElementById('player-one').innerHTML = player1.name
+  document.getElementById('player-banner').innerHTML = player1.name
 }
 
 //input for player 2 and if not then take away player 2
@@ -74,7 +75,7 @@ function greenClick() {
   }, game.interval)
   decreaseTimer()
   //need to make this specific to each player
-  Player.colorSeq.push(index)
+  // Player.colorSeq.push(index)
 }
 
 function redClick() {
@@ -86,7 +87,7 @@ function redClick() {
   }, game.interval)
   decreaseTimer()
   //need to make this specific to each player
-  this.colorSeq.push(index)
+  // this.colorSeq.push(index)
 }
 
 function yellowClick() {
@@ -98,7 +99,7 @@ function yellowClick() {
   }, game.interval)
   decreaseTimer()
   //need to make this specific to each player
-  this.colorSeq.push(index)
+  // this.colorSeq.push(index)
 }
 
 function blueClick() {
@@ -110,7 +111,7 @@ function blueClick() {
   }, game.interval)
   decreaseTimer()
   //need to make this specific to each player
-  this.colorSeq.push(index)
+  // this.colorSeq.push(index)
 }
 
 //function to automatically have the color blur and sound play
