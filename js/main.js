@@ -10,7 +10,7 @@ class Player {
 //Gameplay variable
 let gameplay = {
   level: 0,
-  interval: 1000,
+  interval: 3000,
   colors: [1, 2, 3, 4],
   players: [],
   sequence: [],
@@ -139,6 +139,16 @@ function random() {
     console.log(`blue`)
   }
   return randomNum
+}
+
+//function to decrease game interval
+function decreaseTimer() {
+  if (gameplay.interval > 0) {
+    gameplay.interval -= 150
+    console.log(gameplay.interval)
+  } else if (gameplay.interval <= 0) {
+    alert(`There are no move levels left. You've Won!`)
+  }
 }
 
 green.addEventListener('click', greenClick)
