@@ -32,8 +32,8 @@ let defaultGame = {
 }
 
 // new player variables
-let player1 = new Player()
-let player2 = new Player()
+let player1 = new Player(name)
+let player2 = new Player(name)
 
 // game score variable
 let value = 1
@@ -61,7 +61,9 @@ function score (num) {
 
 // input for player 1
 function input1 () {
-  player1.name = prompt(`Player 1, please input your name.`)
+  let playName1 = ''
+  playName1 = prompt(`Player 1, please input your name.`)
+  let player1 = new Player(playName1)
   document.getElementById('player-one').innerHTML = player1.name
   game.players.push(player1.name)
   curPlayer(player1.name)
@@ -70,12 +72,11 @@ function input1 () {
 // input for player 2 and if not then take away player 2
 function input2 () {
   player2.name = prompt(`Player 2, please input your name.`)
+  document.getElementById('player-two').innerHTML = player2.name
+  game.players.push(player2.name)
   if (player2.name === '') {
     document.querySelector('.player2-score').setAttribute('style', 'display:none')
-  } else {
-    document.getElementById('player-two').innerHTML = player2.name
-    game.players.push(player2.name)
-  }
+  } 
 }
 
 // function to check if arrays match
@@ -325,7 +326,6 @@ async function gameplay () {
 function reset () {
   game.interval = defaultGame.interval
   document.getElementById('player-one').innerHTML = defaultGame.player1
-  // player2 disappears when button is clicked. Need to fix
   document.getElementById('player-two').innerHTML = defaultGame.player2
   document.getElementById('player-banner').innerHTML = ''
   document.getElementById('one-score').innerHTML = defaultGame.score
