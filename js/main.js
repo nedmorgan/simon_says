@@ -1,17 +1,16 @@
-//player constructor
+// player constructor
 class Player {
-  constructor(name) {
+  constructor (name) {
     this.name = name
     this.score = 0
     this.colorSeq = []
   }
 }
 
-//game variable
+// game variable
 let game = {
   score: 0,
   interval: 3000,
-  colors: [1, 2, 3, 4],
   players: [],
   currentPlayer: '',
   sequence: [],
@@ -24,7 +23,7 @@ let game = {
   }
 }
 
-//default variable for reset
+// default variable for reset
 let defaultGame = {
   player1: `Player 1`,
   player2: `Player 2`,
@@ -32,52 +31,46 @@ let defaultGame = {
   score: 0
 }
 
-//this is how to get an audio file to play
-// document.getElementById('resetButton').addEventListener('click', function() {
-//   console.log(game.sounds.green)
-//   game.sounds.blue.play();
-// })
-
-//new player variables
+// new player variables
 let player1 = new Player()
 let player2 = new Player()
 
-//game score variable
+// game score variable
 let value = 1
 
-//button variables
+// button variables
 let startButton = document.getElementById('startButton')
 let resetButton = document.getElementById('resetButton')
 
-//color div variables
+// color div variables
 const green = document.getElementById('green')
 const red = document.getElementById('red')
 const yellow = document.getElementById('yellow')
 const blue = document.getElementById('blue')
 
-//set current player function
-function curPlayer(name) {
+// set current player function
+function curPlayer (name) {
   game.currentPlayer = name
+  document.getElementById('player-banner').innerHTML = name
 }
 
-//function to keep score
-function score(num) {
+// function to keep score
+function score (num) {
   game.score += num
 }
 
-//input for player 1
-function input1() {
+// input for player 1
+function input1 () {
   player1.name = prompt(`Player 1, please input your name.`)
   document.getElementById('player-one').innerHTML = player1.name
-  document.getElementById('player-banner').innerHTML = player1.name
   game.players.push(player1.name)
   curPlayer(player1.name)
 }
 
-//input for player 2 and if not then take away player 2
-function input2() {
+// input for player 2 and if not then take away player 2
+function input2 () {
   player2.name = prompt(`Player 2, please input your name.`)
-  if (player2.name === null) {
+  if (player2.name === '') {
     document.querySelector('.player2-score').setAttribute('style', 'display:none')
   } else {
     document.getElementById('player-two').innerHTML = player2.name
@@ -85,17 +78,19 @@ function input2() {
   }
 }
 
-//function to check if arrays match
-function checkArray(arr1, arr2) {
-  if(arr1 === arr2) {
-    game.track = true
-  } else {
-    game.track = false
-  }
+// function to check if arrays match
+function checkArray (arr1, arr2) {
+  arr1.forEach((e1) => arr2.forEach((e2) => {
+    if (e1 !== e2) {
+      game.track = false
+    } else {
+      game.track = true
+    }
+  }))
 }
 
-//function to decrease game interval
-function decreaseTimer() {
+// function to decrease game interval
+function decreaseTimer () {
   if (game.interval > 0) {
     game.interval -= 150
     console.log(game.interval)
@@ -104,8 +99,8 @@ function decreaseTimer() {
   }
 }
 
-//the color will show and the sound will play when a color div is clicked
-function greenClick() {
+// the color will show and the sound will play when a color div is clicked
+function greenClick () {
   let index = 1
   green.classList.add('green-blur')
   game.sounds.green.play()
@@ -115,8 +110,7 @@ function greenClick() {
   decreaseTimer()
   if (player1.name === game.currentPlayer) {
     player1.colorSeq.push(index)
-    checkArray(game.sequence, player1.colorSeq)
-    console.log(game.track)
+    checkArray(player1.colorSeq, game.sequence)
     if (game.track === true) {
       score(value)
       player1.score = game.score
@@ -125,19 +119,28 @@ function greenClick() {
       document.getElementById('best-score').innerHTML = player1.score
       alert(`Bad Choice. You have lost!`)
       curPlayer(player2.name)
+      alert(`Player2, your turn`)
       game.interval = defaultGame.interval
       game.sequence = []
       game.score = 0
     }
   } else if (player2.name !== null && player2.name === game.currentPlayer) {
     player2.colorSeq.push(index)
-    score(value)
-    player2.score = game.score
-    document.getElementById('two-score').innerHTML = player2.score
+    checkArray(player1.colorSeq, game.sequence)
+    if (game.track === true) {
+      score(value)
+      player2.score = game.score
+      document.getElementById('two-score').innerHTML = player2.score
+    } else {
+      if (player2.score > player1.score) {
+        document.getElementById('best-score').innerHTML = player2.score
+        alert(`Bad Choice. You have lost!`)
+      }
+    }
   }
 }
 
-function redClick() {
+function redClick () {
   let index = 2
   red.classList.add('red-blur')
   game.sounds.red.play();
@@ -147,18 +150,37 @@ function redClick() {
   decreaseTimer()
   if (player1.name === game.currentPlayer) {
     player1.colorSeq.push(index)
-    score(value)
-    player1.score = game.score
-    document.getElementById('one-score').innerHTML = player1.score
+    checkArray(player1.colorSeq, game.sequence)
+    if (game.track === true) {
+      score(value)
+      player1.score = game.score
+      document.getElementById('one-score').innerHTML = player1.score
+    } else {
+      document.getElementById('best-score').innerHTML = player1.score
+      alert(`Bad Choice. You have lost!`)
+      curPlayer(player2.name)
+      alert(`Player2, your turn`)
+      game.interval = defaultGame.interval
+      game.sequence = []
+      game.score = 0
+    }
   } else if (player2.name !== null && player2.name === game.currentPlayer) {
     player2.colorSeq.push(index)
-    score(value)
-    player2.score = game.score
-    document.getElementById('two-score').innerHTML = player2.score
+    checkArray(player1.colorSeq, game.sequence)
+    if (game.track === true) {
+      score(value)
+      player2.score = game.score
+      document.getElementById('two-score').innerHTML = player2.score
+    } else {
+      if (player2.score > player1.score) {
+        document.getElementById('best-score').innerHTML = player2.score
+        alert(`Bad Choice. You have lost!`)
+      }
+    }
   }
 }
 
-function yellowClick() {
+function yellowClick () {
   let index = 3
   yellow.classList.add('yellow-blur')
   game.sounds.yellow.play();
@@ -168,18 +190,37 @@ function yellowClick() {
   decreaseTimer()
   if (player1.name === game.currentPlayer) {
     player1.colorSeq.push(index)
-    score(value)
-    player1.score = game.score
-    document.getElementById('one-score').innerHTML = player1.score
+    checkArray(player1.colorSeq, game.sequence)
+    if (game.track === true) {
+      score(value)
+      player1.score = game.score
+      document.getElementById('one-score').innerHTML = player1.score
+    } else {
+      document.getElementById('best-score').innerHTML = player1.score
+      alert(`Bad Choice. You have lost!`)
+      curPlayer(player2.name)
+      alert(`Player2, your turn`)
+      game.interval = defaultGame.interval
+      game.sequence = []
+      game.score = 0
+    }
   } else if (player2.name !== null && player2.name === game.currentPlayer) {
     player2.colorSeq.push(index)
-    score(value)
-    player2.score = game.score
-    document.getElementById('two-score').innerHTML = player2.score
+    checkArray(player1.colorSeq, game.sequence)
+    if (game.track === true) {
+      score(value)
+      player2.score = game.score
+      document.getElementById('two-score').innerHTML = player2.score
+    } else {
+      if (player2.score > player1.score) {
+        document.getElementById('best-score').innerHTML = player2.score
+        alert(`Bad Choice. You have lost!`)
+      }
+    }
   }
 }
 
-function blueClick() {
+function blueClick () {
   let index = 4
   blue.classList.add('blue-blur')
   game.sounds.blue.play();
@@ -189,88 +230,104 @@ function blueClick() {
   decreaseTimer()
   if (player1.name === game.currentPlayer) {
     player1.colorSeq.push(index)
-    score(value)
-    player1.score = game.score
-    document.getElementById('one-score').innerHTML = player1.score
+    checkArray(player1.colorSeq, game.sequence)
+    if (game.track === true) {
+      score(value)
+      player1.score = game.score
+      document.getElementById('one-score').innerHTML = player1.score
+    } else {
+      document.getElementById('best-score').innerHTML = player1.score
+      alert(`Bad Choice. You have lost!`)
+      curPlayer(player2.name)
+      alert(`Player2, your turn`)
+      game.interval = defaultGame.interval
+      game.sequence = []
+      game.score = 0
+    }
   } else if (player2.name !== null && player2.name === game.currentPlayer) {
     player2.colorSeq.push(index)
-    score(value)
-    player2.score = game.score
-    document.getElementById('two-score').innerHTML = player2.score
+    checkArray(player1.colorSeq, game.sequence)
+    if (game.track === true) {
+      score(value)
+      player2.score = game.score
+      document.getElementById('two-score').innerHTML = player2.score
+    } else {
+      if (player2.score > player1.score) {
+        document.getElementById('best-score').innerHTML = player2.score
+        alert(`Bad Choice. You have lost!`)
+      }
+    }
   }
 }
 
-//function to automatically have the color blur and sound play
-function greenShow() {
-  let index = 1
+// function to automatically have the color blur and sound play
+function greenShow () {
+  let numVal = 1
   green.classList.add('green-blur')
   game.sounds.green.play();
   setTimeout(function () {
     green.classList.remove('green-blur')
   }, game.interval)
-  game.sequence.push(index)
+  game.sequence.push(numVal)
 }
 
-function redShow() {
-  let index = 2
+function redShow () {
+  let numVal = 2
   red.classList.add('red-blur')
   game.sounds.red.play();
   setTimeout(function () {
     red.classList.remove('red-blur')
   }, game.interval)
-  game.sequence.push(index)
+  game.sequence.push(numVal)
 }
 
-function yellowShow() {
-  let index = 3
+function yellowShow () {
+  let numVal = 3
   yellow.classList.add('yellow-blur')
   game.sounds.yellow.play();
   setTimeout(function () {
     yellow.classList.remove('yellow-blur')
   }, game.interval)
-  game.sequence.push(index)
+  game.sequence.push(numVal)
 }
 
-function blueShow() {
-  let index = 4
+function blueShow () {
+  let numVal = 4
   blue.classList.add('blue-blur')
   game.sounds.blue.play();
   setTimeout(function () {
     blue.classList.remove('blue-blur')
   }, game.interval)
-  game.sequence.push(index)
+  game.sequence.push(numVal)
 }
 
-//function to math random through the game array of numbers
-function random() {
+// function to math random through the game array of numbers
+function random () {
   let randomNum = Math.ceil(Math.random() * 4)
   if (randomNum === 1) {
     greenShow()
-    game.sequence.push(randomNum)
   } else if (randomNum === 2) {
     redShow()
-    game.sequence.push(randomNum)
   } else if (randomNum === 3) {
     yellowShow()
-    game.sequence.push(randomNum)
   } else if (randomNum === 4) {
     blueShow()
-    game.sequence.push(randomNum)
   }
   return randomNum
 }
 
-//async function to activate game
-async function gameplay() {
+// async function to activate game
+async function gameplay () {
 
 }
 
-//function to reset the game to start from scratch
-function reset() {
+// function to reset the game to start from scratch
+function reset () {
   game.interval = defaultGame.interval
   document.getElementById('player-one').innerHTML = defaultGame.player1
-  //player2 disappears when button is clicked. Need to fix
+  // player2 disappears when button is clicked. Need to fix
   document.getElementById('player-two').innerHTML = defaultGame.player2
+  document.getElementById('player-banner').innerHTML = ''
   document.getElementById('one-score').innerHTML = defaultGame.score
   document.getElementById('two-score').innerHTML = defaultGame.score
   alert(`Press Start button to begin new game`)
@@ -281,13 +338,13 @@ red.addEventListener('click', redClick)
 yellow.addEventListener('click', yellowClick)
 blue.addEventListener('click', blueClick)
 
-//event listener for start button
+// event listener for start button
 startButton.addEventListener('click', function () {
   input1()
   input2()
 })
 
-//event listener for reset button
+// event listener for reset button
 resetButton.addEventListener('click', function () {
   reset()
 })
