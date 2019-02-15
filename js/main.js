@@ -126,17 +126,17 @@ function blueShow() {
 function random() {
   let randomNum = Math.ceil(Math.random() * 4)
   if (randomNum === 1) {
-    console.log(randomNum)
-    console.log(`green`)
+    greenShow()
+    decreaseTimer()
   } else if (randomNum === 2) {
-    console.log(randomNum)
-    console.log(`red`)
+    redShow()
+    decreaseTimer()
   } else if (randomNum === 3) {
-    console.log(randomNum)
-    console.log(`yellow`)
+    yellowShow()
+    decreaseTimer()
   } else if (randomNum === 4) {
-    console.log(randomNum)
-    console.log(`blue`)
+    blueShow()
+    decreaseTimer()
   }
   return randomNum
 }
