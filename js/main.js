@@ -15,6 +15,7 @@ let game = {
   currentPlayer: '',
   sequence: [],
   track: false,
+  compTurn: false,
   blink: 0,
   sounds: {
     green: new Audio('media/sfx_sounds_Blip1.wav'),
@@ -36,8 +37,9 @@ let defaultGame = {
 let player1 = new Player()
 let player2 = new Player()
 
-// game score variable
+// game score and offset variable
 let value = 1
+let offset = 0
 
 // button variables
 let startButton = document.getElementById('startButton')
@@ -113,7 +115,7 @@ function greenClick() {
   if (player1.name === game.currentPlayer) {
     player1.sequence.push(index)
     checkArray(player1.sequence, game.sequence)
-    if (game.track === true) {
+    if (game.track == true) {
       score(value)
       player1.score = game.score
       document.getElementById('one-score').innerHTML = player1.score
@@ -129,7 +131,7 @@ function greenClick() {
   } else if (player2.name === game.currentPlayer) {
     player2.sequence.push(index)
     checkArray(player2.sequence, game.sequence)
-    if (game.track === true) {
+    if (game.track == true) {
       score(value)
       player2.score = game.score
       document.getElementById('two-score').innerHTML = player2.score
@@ -154,7 +156,7 @@ function redClick() {
   if (player1.name === game.currentPlayer) {
     player1.sequence.push(index)
     checkArray(player1.sequence, game.sequence)
-    if (game.track === true) {
+    if (game.track == true) {
       score(value)
       player1.score = game.score
       document.getElementById('one-score').innerHTML = player1.score
@@ -170,7 +172,7 @@ function redClick() {
   } else if (player2.name === game.currentPlayer) {
     player2.sequence.push(index)
     checkArray(player1.sequence, game.sequence)
-    if (game.track === true) {
+    if (game.track == true) {
       score(value)
       player2.score = game.score
       document.getElementById('two-score').innerHTML = player2.score
@@ -195,7 +197,7 @@ function yellowClick() {
   if (player1.name === game.currentPlayer) {
     player1.sequence.push(index)
     checkArray(player1.sequence, game.sequence)
-    if (game.track === true) {
+    if (game.track == true) {
       score(value)
       player1.score = game.score
       document.getElementById('one-score').innerHTML = player1.score
@@ -211,7 +213,7 @@ function yellowClick() {
   } else if (player2.name === game.currentPlayer) {
     player2.sequence.push(index)
     checkArray(player2.sequence, game.sequence)
-    if (game.track === true) {
+    if (game.track == true) {
       score(value)
       player2.score = game.score
       document.getElementById('two-score').innerHTML = player2.score
@@ -236,7 +238,7 @@ function blueClick() {
   if (player1.name === game.currentPlayer) {
     player1.sequence.push(index)
     checkArray(player1.sequence, game.sequence)
-    if (game.track === true) {
+    if (game.track == true) {
       score(value)
       player1.score = game.score
       document.getElementById('one-score').innerHTML = player1.score
@@ -252,7 +254,7 @@ function blueClick() {
   } else if (player2.name === game.currentPlayer) {
     player2.sequence.push(index)
     checkArray(player2.sequence, game.sequence)
-    if (game.track === true) {
+    if (game.track == true) {
       score(value)
       player2.score = game.score
       document.getElementById('two-score').innerHTML = player2.score
@@ -348,26 +350,27 @@ function random() {
   } else if (randomNum === 4) {
     blueShow()
   }
-  return randomNum
 }
 
 //computer play sequence function
 function computerPlay() {
-  setTimeout(function () {
-    if (el == 1) {
-      oneShow()
-    }
-    if (el == 2) {
-      twoShow()
-    }
-    if (el == 3) {
-      threeShow()
-    }
-    if (el == 4) {
-      fourShow()
-    }
-    game.blink++
-  }, game.interval)
+  game.sequence.forEach(function (el) {
+    setTimeout(function () {
+      if (el == 1) {
+        oneShow()
+      }
+      if (el == 2) {
+        twoShow()
+      }
+      if (el == 3) {
+        threeShow()
+      }
+      if (el == 4) {
+        fourShow()
+      }
+    }, game.interval + offset)
+    offset += game.interval
+  })
 }
 
 // async function to activate game
@@ -377,6 +380,9 @@ async function gameplay() {
 
 // function to reset the game to start from scratch
 function reset() {
+  game.sequence = []
+  player1.sequence = []
+  player2.sequence = []
   game.interval = defaultGame.interval
   document.getElementById('player-one').innerHTML = defaultGame.player1
   document.getElementById('player-two').innerHTML = defaultGame.player2
