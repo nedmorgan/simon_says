@@ -57,12 +57,11 @@ function curPlayer(name) {
 
 // function to keep score
 function score() {
-  if(player1.name === game.currentPlayer) {
+  if (player1.name === game.currentPlayer) {
     game.score = game.sequence.length
     player1.score = game.score
     document.getElementById('one-score').innerHTML = player1.score;
-  }
-  else {
+  } else if (player2.name === game.currentPlayer) {
     game.score = game.sequence.length
     player2.score = game.score
     document.getElementById('two-score').innerHTML = player2.score;
@@ -83,29 +82,7 @@ function input2() {
   document.getElementById('player-two').innerHTML = player2.name
   game.players.push(player2.name)
   if (player2.name === '') {
-    document.querySelector('.player2-score').setAttribute('style', 'display:none')
-  }
-}
-
-// function to check if array length is equal and then check if the arrays match
-function checkArray(arr1, arr2) {
-  if (arr1.length === arr2.length) {
-    arr1.forEach((e1) => {
-      return arr2.forEach((e2) => {
-        if (e1 !== e2) {
-          game.track = false
-        } else {
-          game.track = true
-          if (player1.name === game.currentPlayer) {
-            score()
-            player1.sequence = []
-          } else {
-            score()
-            player2.sequence = []
-          }
-        }
-      })
-    })
+    document.getElementById('player-two').setAttribute('style', 'display:none')
   }
 }
 
@@ -125,18 +102,19 @@ function greenClick() {
   setTimeout(function () {
     green.classList.remove('green-blur')
   }, 250)
-  decreaseTimer()
   if (player1.name === game.currentPlayer) {
     player1.sequence.push(1)
-    checkArray(player1.sequence, game.sequence)
-    if (game.track == false) {
-      document.getElementById('best-score').innerHTML = player1.score
-      alert(`Bad Choice. You have lost!`)
-      curPlayer(player2.name)
-      alert(`Player2, your turn`)
-      game.interval = defaultGame.interval
-      game.sequence = []
-      game.score = 0
+    if (player1.sequence.length === game.sequence.length) {
+      checkArray(player1.sequence, game.sequence)
+      if (game.track == false) {
+        document.getElementById('best-score').innerHTML = player1.score
+        alert(`Bad Choice. You have lost!`)
+        curPlayer(player2.name)
+        alert(`Player2, your turn`)
+        game.interval = defaultGame.interval
+        game.sequence = []
+        game.score = 0
+      }
     }
   } else if (player2.name === game.currentPlayer) {
     player2.sequence.push(1)
@@ -157,18 +135,19 @@ function redClick() {
   setTimeout(function () {
     red.classList.remove('red-blur')
   }, 250)
-  decreaseTimer()
   if (player1.name === game.currentPlayer) {
     player1.sequence.push(2)
-    checkArray(player1.sequence, game.sequence)
-    if (game.track == false) {
-      document.getElementById('best-score').innerHTML = player1.score
-      alert(`Bad Choice. You have lost!`)
-      curPlayer(player2.name)
-      alert(`Player2, your turn`)
-      game.interval = defaultGame.interval
-      game.sequence = []
-      game.score = 0
+    if (player1.sequence.length === game.sequence.length) {
+      checkArray(player1.sequence, game.sequence)
+      if (game.track == false) {
+        document.getElementById('best-score').innerHTML = player1.score
+        alert(`Bad Choice. You have lost!`)
+        curPlayer(player2.name)
+        alert(`Player2, your turn`)
+        game.interval = defaultGame.interval
+        game.sequence = []
+        game.score = 0
+      }
     }
   } else if (player2.name === game.currentPlayer) {
     player2.sequence.push(2)
@@ -189,18 +168,19 @@ function yellowClick() {
   setTimeout(function () {
     yellow.classList.remove('yellow-blur')
   }, 250)
-  decreaseTimer()
   if (player1.name === game.currentPlayer) {
     player1.sequence.push(3)
-    checkArray(player1.sequence, game.sequence)
-    if (game.track == false) {
-      document.getElementById('best-score').innerHTML = player1.score
-      alert(`Bad Choice. You have lost!`)
-      curPlayer(player2.name)
-      alert(`Player2, your turn`)
-      game.interval = defaultGame.interval
-      game.sequence = []
-      game.score = 0
+    if (player1.sequence.length === game.sequence.length) {
+      checkArray(player1.sequence, game.sequence)
+      if (game.track == false) {
+        document.getElementById('best-score').innerHTML = player1.score
+        alert(`Bad Choice. You have lost!`)
+        curPlayer(player2.name)
+        alert(`Player2, your turn`)
+        game.interval = defaultGame.interval
+        game.sequence = []
+        game.score = 0
+      }
     }
   } else if (player2.name === game.currentPlayer) {
     player2.sequence.push(3)
@@ -221,18 +201,19 @@ function blueClick() {
   setTimeout(function () {
     blue.classList.remove('blue-blur')
   }, 250)
-  decreaseTimer()
   if (player1.name === game.currentPlayer) {
     player1.sequence.push(4)
-    checkArray(player1.sequence, game.sequence)
-    if (game.track == false) {
-      document.getElementById('best-score').innerHTML = player1.score
-      alert(`Bad Choice. You have lost!`)
-      curPlayer(player2.name)
-      alert(`Player2, your turn`)
-      game.interval = defaultGame.interval
-      game.sequence = []
-      game.score = 0
+    if (player1.sequence.length === game.sequence.length) {
+      checkArray(player1.sequence, game.sequence)
+      if (game.track == false) {
+        document.getElementById('best-score').innerHTML = player1.score
+        alert(`Bad Choice. You have lost!`)
+        curPlayer(player2.name)
+        alert(`Player2, your turn`)
+        game.interval = defaultGame.interval
+        game.sequence = []
+        game.score = 0
+      }
     }
   } else if (player2.name === game.currentPlayer) {
     player2.sequence.push(4)
@@ -322,7 +303,7 @@ let lastNum
 // function to math random through the game array of numbers
 function random() {
   let randomNum = Math.ceil(Math.random() * 4)
-  if (lastNum === randomNum) {
+  if (lastNum == randomNum) {
     console.log(`That was the same number`)
     random()
   } else {
@@ -360,12 +341,52 @@ function computerPlay() {
     console.log(offset)
   })
   offset = 0
+  if (game.sequence.length === game.score) {
+    setTimeout(function () {
+      random()
+    }, game.interval + 1500)
+  }
 }
 
-// async function to activate game
-async function gameplay() {
-
+// function to check if array length is equal and then check if the arrays match
+function checkArray(arr1, arr2) {
+  arr1.forEach((e1) => {
+    return arr2.forEach((e2) => {
+      if (e1 !== e2) {
+        game.track = false
+      } else {
+        game.track = true
+        if (player1.name === game.currentPlayer) {
+          score()
+          decreaseTimer()
+          player1.sequence = []
+          game.compTurn = false
+          console.log(game.compTurn)
+          setTimeout(function () {
+            computerPlay()
+          }, game.interval)
+        } else {
+          score()
+          decreaseTimer()
+          player2.sequence = []
+          game.compTurn = false
+          console.log(game.compTurn)
+        }
+      }
+    })
+  })
 }
+
+// function to activate game
+// function gameplay() {
+//   setTimeout(function () {
+//     computerPlay()
+//   }, 2000)
+//   game.compTurn = true
+// if (game.compTurn === true) {
+//   random()
+// }
+// }
 
 // function to reset the game to start from scratch
 function reset() {
@@ -391,6 +412,7 @@ blue.addEventListener('click', blueClick)
 startButton.addEventListener('click', function () {
   input1()
   input2()
+  random()
 })
 
 // event listener for reset button
