@@ -14,9 +14,8 @@ let game = {
   players: [],
   currentPlayer: '',
   sequence: [],
-  track: false,
+  track: true,
   compTurn: false,
-  blink: 0,
   sounds: {
     green: new Audio('media/sfx_sounds_Blip1.wav'),
     red: new Audio('media/sfx_sounds_Blip4.wav'),
@@ -37,8 +36,7 @@ let defaultGame = {
 let player1 = new Player()
 let player2 = new Player()
 
-// game score and offset variable
-let value = 1
+// offset variable
 let offset = 0
 
 // button variables
@@ -58,8 +56,17 @@ function curPlayer(name) {
 }
 
 // function to keep score
-function score(num) {
-  game.score += num
+function score() {
+  if(player1.name === game.currentPlayer) {
+    game.score = game.sequence.length
+    player1.score = game.score
+    document.getElementById('one-score').innerHTML = player1.score;
+  }
+  else {
+    game.score = game.sequence.length
+    player2.score = game.score
+    document.getElementById('two-score').innerHTML = player2.score;
+  }
 }
 
 // input for player 1
@@ -86,20 +93,16 @@ function checkArray(arr1, arr2) {
     arr1.forEach((e1) => {
       return arr2.forEach((e2) => {
         if (e1 !== e2) {
-          game.track = false;
+          game.track = false
         } else {
-          game.track = true;
-        }
-        if (player1.name === game.currentPlayer) {
-          score(value);
-          player1.score = game.score;
-          document.getElementById('one-score').innerHTML = player1.score;
-          player1.sequence = []
-        } else {
-          score(value);
-          player2.score = game.score;
-          document.getElementById('two-score').innerHTML = player2.score;
-          player2.sequence = []
+          game.track = true
+          if (player1.name === game.currentPlayer) {
+            score()
+            player1.sequence = []
+          } else {
+            score()
+            player2.sequence = []
+          }
         }
       })
     })
