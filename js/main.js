@@ -338,21 +338,29 @@ function fourShow() {
   }, game.interval)
 }
 
+// check to see if we are repeating numbers
+let lastNum
 // function to math random through the game array of numbers
 function random() {
   let randomNum = Math.ceil(Math.random() * 4)
-  if (randomNum === 1) {
-    greenShow()
-  } else if (randomNum === 2) {
-    redShow()
-  } else if (randomNum === 3) {
-    yellowShow()
-  } else if (randomNum === 4) {
-    blueShow()
+  if (lastNum === randomNum) {
+    console.log(`That was the same number`)
+    random()
+  } else {
+    if (randomNum === 1) {
+      greenShow()
+    } else if (randomNum === 2) {
+      redShow()
+    } else if (randomNum === 3) {
+      yellowShow()
+    } else if (randomNum === 4) {
+      blueShow()
+    }
   }
+  lastNum = randomNum
 }
 
-//computer play sequence function
+// computer play sequence function
 function computerPlay() {
   game.sequence.forEach(function (el) {
     setTimeout(function () {
@@ -392,7 +400,7 @@ function reset() {
   alert(`Press Start button to begin new game`)
 }
 
-//event listener for each color click event
+// event listener for each color click event
 green.addEventListener('click', greenClick)
 red.addEventListener('click', redClick)
 yellow.addEventListener('click', yellowClick)
