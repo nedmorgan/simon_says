@@ -83,13 +83,26 @@ function input2() {
 // function to check if array length is equal and then check if the arrays match
 function checkArray(arr1, arr2) {
   if (arr1.length === arr2.length) {
-    arr1.forEach((e1) => arr2.forEach((e2) => {
-      if (e1 !== e2) {
-        game.track = false
-      } else {
-        game.track = true
-      }
-    }))
+    arr1.forEach((e1) => {
+      return arr2.forEach((e2) => {
+        if (e1 !== e2) {
+          game.track = false;
+        } else {
+          game.track = true;
+        }
+        if (player1.name === game.currentPlayer) {
+          score(value);
+          player1.score = game.score;
+          document.getElementById('one-score').innerHTML = player1.score;
+          player1.sequence = []
+        } else {
+          score(value);
+          player2.score = game.score;
+          document.getElementById('two-score').innerHTML = player2.score;
+          player2.sequence = []
+        }
+      })
+    })
   }
 }
 
@@ -97,7 +110,6 @@ function checkArray(arr1, arr2) {
 function decreaseTimer() {
   if (game.interval > 0) {
     game.interval -= 150
-    console.log(game.interval)
   } else if (game.interval <= 0) {
     alert(`There are no move levels left. You've Won!`)
   }
@@ -105,7 +117,6 @@ function decreaseTimer() {
 
 // the color will show and the sound will play when a color div is clicked
 function greenClick() {
-  let index = 1
   green.classList.add('green-blur')
   game.sounds.green.play()
   setTimeout(function () {
@@ -113,13 +124,9 @@ function greenClick() {
   }, 250)
   decreaseTimer()
   if (player1.name === game.currentPlayer) {
-    player1.sequence.push(index)
+    player1.sequence.push(1)
     checkArray(player1.sequence, game.sequence)
-    if (game.track == true) {
-      score(value)
-      player1.score = game.score
-      document.getElementById('one-score').innerHTML = player1.score
-    } else {
+    if (game.track == false) {
       document.getElementById('best-score').innerHTML = player1.score
       alert(`Bad Choice. You have lost!`)
       curPlayer(player2.name)
@@ -129,13 +136,9 @@ function greenClick() {
       game.score = 0
     }
   } else if (player2.name === game.currentPlayer) {
-    player2.sequence.push(index)
+    player2.sequence.push(1)
     checkArray(player2.sequence, game.sequence)
-    if (game.track == true) {
-      score(value)
-      player2.score = game.score
-      document.getElementById('two-score').innerHTML = player2.score
-    } else {
+    if (game.track == false) {
       alert(`Bad Choice. You have lost!`)
       if (player2.score > player1.score) {
         document.getElementById('best-score').innerHTML = player2.score
@@ -146,7 +149,6 @@ function greenClick() {
 }
 
 function redClick() {
-  let index = 2
   red.classList.add('red-blur')
   game.sounds.red.play();
   setTimeout(function () {
@@ -154,13 +156,9 @@ function redClick() {
   }, 250)
   decreaseTimer()
   if (player1.name === game.currentPlayer) {
-    player1.sequence.push(index)
+    player1.sequence.push(2)
     checkArray(player1.sequence, game.sequence)
-    if (game.track == true) {
-      score(value)
-      player1.score = game.score
-      document.getElementById('one-score').innerHTML = player1.score
-    } else {
+    if (game.track == false) {
       document.getElementById('best-score').innerHTML = player1.score
       alert(`Bad Choice. You have lost!`)
       curPlayer(player2.name)
@@ -170,13 +168,9 @@ function redClick() {
       game.score = 0
     }
   } else if (player2.name === game.currentPlayer) {
-    player2.sequence.push(index)
+    player2.sequence.push(2)
     checkArray(player1.sequence, game.sequence)
-    if (game.track == true) {
-      score(value)
-      player2.score = game.score
-      document.getElementById('two-score').innerHTML = player2.score
-    } else {
+    if (game.track == false) {
       alert(`Bad Choice. You have lost!`)
       if (player2.score > player1.score) {
         document.getElementById('best-score').innerHTML = player2.score
@@ -187,7 +181,6 @@ function redClick() {
 }
 
 function yellowClick() {
-  let index = 3
   yellow.classList.add('yellow-blur')
   game.sounds.yellow.play();
   setTimeout(function () {
@@ -195,13 +188,9 @@ function yellowClick() {
   }, 250)
   decreaseTimer()
   if (player1.name === game.currentPlayer) {
-    player1.sequence.push(index)
+    player1.sequence.push(3)
     checkArray(player1.sequence, game.sequence)
-    if (game.track == true) {
-      score(value)
-      player1.score = game.score
-      document.getElementById('one-score').innerHTML = player1.score
-    } else {
+    if (game.track == false) {
       document.getElementById('best-score').innerHTML = player1.score
       alert(`Bad Choice. You have lost!`)
       curPlayer(player2.name)
@@ -211,13 +200,9 @@ function yellowClick() {
       game.score = 0
     }
   } else if (player2.name === game.currentPlayer) {
-    player2.sequence.push(index)
+    player2.sequence.push(3)
     checkArray(player2.sequence, game.sequence)
-    if (game.track == true) {
-      score(value)
-      player2.score = game.score
-      document.getElementById('two-score').innerHTML = player2.score
-    } else {
+    if (game.track == false) {
       alert(`Bad Choice. You have lost!`)
       if (player2.score > player1.score) {
         document.getElementById('best-score').innerHTML = player2.score
@@ -228,7 +213,6 @@ function yellowClick() {
 }
 
 function blueClick() {
-  let index = 4
   blue.classList.add('blue-blur')
   game.sounds.blue.play();
   setTimeout(function () {
@@ -236,13 +220,9 @@ function blueClick() {
   }, 250)
   decreaseTimer()
   if (player1.name === game.currentPlayer) {
-    player1.sequence.push(index)
+    player1.sequence.push(4)
     checkArray(player1.sequence, game.sequence)
-    if (game.track == true) {
-      score(value)
-      player1.score = game.score
-      document.getElementById('one-score').innerHTML = player1.score
-    } else {
+    if (game.track == false) {
       document.getElementById('best-score').innerHTML = player1.score
       alert(`Bad Choice. You have lost!`)
       curPlayer(player2.name)
@@ -252,13 +232,9 @@ function blueClick() {
       game.score = 0
     }
   } else if (player2.name === game.currentPlayer) {
-    player2.sequence.push(index)
+    player2.sequence.push(4)
     checkArray(player2.sequence, game.sequence)
-    if (game.track == true) {
-      score(value)
-      player2.score = game.score
-      document.getElementById('two-score').innerHTML = player2.score
-    } else {
+    if (game.track == false) {
       alert(`Bad Choice. You have lost!`)
       if (player2.score > player1.score) {
         document.getElementById('best-score').innerHTML = player2.score
@@ -378,7 +354,9 @@ function computerPlay() {
       }
     }, game.interval + offset)
     offset += game.interval
+    console.log(offset)
   })
+  offset = 0
 }
 
 // async function to activate game
