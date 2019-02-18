@@ -509,16 +509,22 @@ easyButton.addEventListener('click', function () {
   defaultGame.interval = 1000
   game.interval = 1000
   easyButton.setAttribute('style', 'border-color:red')
+  mediumButton.style.removeProperty('border-color')
+  hardButton.style.removeProperty('border-color')
 })
 
 mediumButton.addEventListener('click', function () {
   defaultGame.interval = 750
   game.interval = 750
   mediumButton.setAttribute('style', 'border-color:red')
+  easyButton.style.removeProperty('border-color')
+  hardButton.style.removeProperty('border-color')
 })
 
 hardButton.addEventListener('click', function () {
   defaultGame.interval = 500
   game.interval = 500
   hardButton.setAttribute('style', 'border-color:red')
+  mediumButton.style.removeProperty('border-color')
+  easyButton.style.removeProperty('border-color')
 })

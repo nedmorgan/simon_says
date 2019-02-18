@@ -140,6 +140,19 @@ p {
   justify-content: space-around;
 }
 
+.level-button {
+  background-color: black;
+  color: whitesmoke;
+  font-family: "Pricedown W01 Black",
+    sans-serif;
+  font-size: 2vw;
+  padding: 1vh 3vw;
+  border: 3px solid whitesmoke;
+  border-radius: 10%;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+}
+
 .button {
   background-color: black;
   color: whitesmoke;
@@ -153,7 +166,8 @@ p {
   margin-bottom: 1vh;
 }
 
-.button:hover {
+.button:hover,
+.level-button:hover {
   background-color: whitesmoke;
   color: black;
   cursor: pointer;
