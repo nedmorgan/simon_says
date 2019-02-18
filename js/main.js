@@ -24,7 +24,7 @@ let game = {
 let defaultGame = {
   player1: `Player 1`,
   player2: `Player 2`,
-  interval: 3000,
+  interval: 1000,
   score: 0
 }
 
@@ -113,13 +113,15 @@ function greenClick() {
       if (game.track == false) {
         document.getElementById('best-score').innerHTML = player1.score
         playAll()
-        curPlayer(player2.name)
-        game.interval = defaultGame.interval
-        game.sequence = []
-        game.score = 0
-        setTimeout(function () {
-          random()
-        }, game.interval)
+        if (player2.name !== null) {
+          curPlayer(player2.name)
+          game.interval = defaultGame.interval
+          game.sequence = []
+          game.score = 0
+          setTimeout(function () {
+            random()
+          }, game.interval)
+        }
       }
     }
   } else if (player2.name === game.currentPlayer) {
@@ -148,13 +150,15 @@ function redClick() {
       if (game.track == false) {
         document.getElementById('best-score').innerHTML = player1.score
         playAll()
-        curPlayer(player2.name)
-        game.interval = defaultGame.interval
-        game.sequence = []
-        game.score = 0
-        setTimeout(function () {
-          random()
-        }, game.interval)
+        if (player2.name !== null) {
+          curPlayer(player2.name)
+          game.interval = defaultGame.interval
+          game.sequence = []
+          game.score = 0
+          setTimeout(function () {
+            random()
+          }, game.interval)
+        }
       }
     }
   } else if (player2.name === game.currentPlayer) {
@@ -183,13 +187,15 @@ function yellowClick() {
       if (game.track == false) {
         document.getElementById('best-score').innerHTML = player1.score
         playAll()
-        curPlayer(player2.name)
-        game.interval = defaultGame.interval
-        game.sequence = []
-        game.score = 0
-        setTimeout(function () {
-          random()
-        }, game.interval)
+        if (player2.name !== null) {
+          curPlayer(player2.name)
+          game.interval = defaultGame.interval
+          game.sequence = []
+          game.score = 0
+          setTimeout(function () {
+            random()
+          }, game.interval)
+        }
       }
     }
   } else if (player2.name === game.currentPlayer) {
@@ -218,13 +224,15 @@ function blueClick() {
       if (game.track == false) {
         document.getElementById('best-score').innerHTML = player1.score
         playAll()
-        curPlayer(player2.name)
-        game.interval = defaultGame.interval
-        game.sequence = []
-        game.score = 0
-        setTimeout(function () {
-          random()
-        }, game.interval)
+        if (player2.name !== null) {
+          curPlayer(player2.name)
+          game.interval = defaultGame.interval
+          game.sequence = []
+          game.score = 0
+          setTimeout(function () {
+            random()
+          }, game.interval)
+        }
       }
     }
   } else if (player2.name === game.currentPlayer) {
@@ -379,32 +387,7 @@ function random() {
   lastNum = randomNum
 }
 
-// computer play sequence function
-// need to fix bug. looping over this twice.
-// function computerPlay() {
-//   for (let el = 0; el < game.sequence.length; el++) {
-//     setTimeout(function () {
-//       if (game.sequence[el] === 1) {
-//         oneShow()
-//       } else if (game.sequence[el] === 2) {
-//         twoShow()
-//       } else if (game.sequence[el] === 3) {
-//         threeShow()
-//       } else if (game.sequence[el] === 4) {
-//         fourShow()
-//       }
-//     }, game.interval + offset)
-//     offset += game.interval
-//     console.log(offset)
-//   }
-//   console.log(game.compTurn)
-//   if (game.sequence.length === game.score) {
-//     setTimeout(function () {
-//       random()
-//       game.compTurn = false
-//     }, game.interval + offset)
-//   }
-// }
+// function for the computer to run and check the colors
 function computerPlay() {
   console.log('In computerPlay!')
   game.currentIndex = 0
@@ -414,7 +397,7 @@ function computerPlay() {
     console.log('game.sequence is: ', game.sequence)
 
     // console.log('player1.sequence: ', player1.sequence)
-    if ((game.sequence.length - 1) !== game.currentIndex) {
+    if (game.currentIndex < game.sequence.length) {
       if (game.sequence[game.currentIndex] === 1) {
         oneShow()
       } else if (game.sequence[game.currentIndex] === 2) {
@@ -431,8 +414,6 @@ function computerPlay() {
       return clearInterval(game.gameInterval)
     }
   }, 800)
-
-
 }
 
 // function to check if array length is equal and then check if the arrays match
@@ -462,10 +443,6 @@ function computerPlay() {
 // }
 
 function checkArray(arr1, arr2) {
-  // arr1.forEach((e1, i) => {
-
-  // })
-
   for (let i = 0; i < arr1.length; i++) {
     if (arr1[i] !== arr2[i]) {
       game.track = false
