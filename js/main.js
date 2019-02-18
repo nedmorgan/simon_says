@@ -126,12 +126,14 @@ function greenClick() {
     }
   } else if (player2.name === game.currentPlayer) {
     player2.sequence.push(1)
-    checkArray(player2.sequence, game.sequence)
-    if (game.track == false) {
-      playAll()
-      if (player2.score > player1.score) {
-        document.getElementById('best-score').innerHTML = player2.score
-        alert(`${player2.name} you have the high score`)
+    if (player2.sequence.length === game.sequence.length) {
+      checkArray(player2.sequence, game.sequence)
+      if (game.track == false) {
+        playAll()
+        if (player2.score > player1.score) {
+          document.getElementById('best-score').innerHTML = player2.score
+          alert(`${player2.name} you have the high score`)
+        }
       }
     }
   }
@@ -163,12 +165,14 @@ function redClick() {
     }
   } else if (player2.name === game.currentPlayer) {
     player2.sequence.push(2)
-    checkArray(player1.sequence, game.sequence)
-    if (game.track == false) {
-      playAll()
-      if (player2.score > player1.score) {
-        document.getElementById('best-score').innerHTML = player2.score
-        alert(`${player2.name} you have the high score`)
+    if (player2.sequence.length === game.sequence.length) {
+      checkArray(player1.sequence, game.sequence)
+      if (game.track == false) {
+        playAll()
+        if (player2.score > player1.score) {
+          document.getElementById('best-score').innerHTML = player2.score
+          alert(`${player2.name} you have the high score`)
+        }
       }
     }
   }
@@ -200,12 +204,14 @@ function yellowClick() {
     }
   } else if (player2.name === game.currentPlayer) {
     player2.sequence.push(3)
-    checkArray(player2.sequence, game.sequence)
-    if (game.track == false) {
-      playAll()
-      if (player2.score > player1.score) {
-        document.getElementById('best-score').innerHTML = player2.score
-        alert(`${player2.name} you have the high score`)
+    if (player2.sequence.length === game.sequence.length) {
+      checkArray(player2.sequence, game.sequence)
+      if (game.track == false) {
+        playAll()
+        if (player2.score > player1.score) {
+          document.getElementById('best-score').innerHTML = player2.score
+          alert(`${player2.name} you have the high score`)
+        }
       }
     }
   }
@@ -237,12 +243,14 @@ function blueClick() {
     }
   } else if (player2.name === game.currentPlayer) {
     player2.sequence.push(4)
-    checkArray(player2.sequence, game.sequence)
-    if (game.track == false) {
-      playAll()
-      if (player2.score > player1.score) {
-        document.getElementById('best-score').innerHTML = player2.score
-        alert(`${player2.name} you have the high score`)
+    if (player2.sequence.length === game.sequence.length) {
+      checkArray(player2.sequence, game.sequence)
+      if (game.track == false) {
+        playAll()
+        if (player2.score > player1.score) {
+          document.getElementById('best-score').innerHTML = player2.score
+          alert(`${player2.name} you have the high score`)
+        }
       }
     }
   }
