@@ -47,6 +47,20 @@ const redAudio = new Audio('media/sfx_sounds_Blip4.wav')
 const yellowAudio = new Audio('media/sfx_sounds_Blip8.wav')
 const blueAudio = new Audio('media/sfx_sounds_Blip10.wav')
 
+// audio play functions
+// const greenPlay = function () {
+//   greenAudio.play()
+// }
+// const redPlay = function () {
+//   redAudio.play()
+// }
+// const yellowPlay = function () {
+//   yellowAudio.play()
+// }
+// const bluePlay = function () {
+//   blueAudio.play()
+// }
+
 // set current player function
 function curPlayer(name) {
   game.currentPlayer = name
@@ -227,25 +241,23 @@ function blueClick() {
 }
 
 // attempt to refactor user color show and array push
-// class UserShow {
-//   constructor(color, blur, audio, num) {
-//     this.color = color
-//     this.blur = blur
-//     this.audio = audio
-//     this.num = num
-//     color.classList.add(blur);
-//     audio.play();
-//     setTimeout(function () {
-//       color.classList.remove(blur);
-//     }, game.interval);
-//     game.sequence.push(num);
-//   }
+// function UserShow(color, blur, audio, num) {
+//   this.color = color
+//   this.blur = blur
+//   this.audio = audio
+//   this.num = num
+//   color.classList.add(blur)
+//   audio
+//   setTimeout(function () {
+//     color.classList.remove(blur)
+//   }, game.interval)
+//   game.sequence.push(num)
 // }
 
-// let greenShow = new UserShow(green, 'green-blur', greenAudio, 1)
-// let redShow = new UserShow(red, 'red-blur', redAudio, 2)
-// let yellowShow = new UserShow(yellow, 'yellow-blur', yellowAudio, 3)
-// let blueShow = new UserShow(blue, 'blue-blur', blueAudio, 4)
+// let greenShow = new UserShow(green, 'green-blur', greenPlay(), 1)
+// let redShow = new UserShow(red, 'red-blur', redPlay(), 2)
+// let yellowShow = new UserShow(yellow, 'yellow-blur', yellowPlay(), 3)
+// let blueShow = new UserShow(blue, 'blue-blur', bluePlay(), 4)
 
 // function to automatically have the color blur and sound play for initial instance of color in sequence
 function greenShow() {
@@ -285,16 +297,14 @@ function blueShow() {
 }
 
 // attempt to refactor computer color show function
-// class CompShow {
-//   constructor(color, blur) {
-//     this.color = color;
-//     this.blur = blur;
-//     color.classList.add(blur);
-//     game.sounds.color.play();
-//     setTimeout(function () {
-//       color.classList.remove(blur);
-//     }, game.interval);
-//   }
+// function CompShow(color, blur) {
+//   this.color = color;
+//   this.blur = blur;
+//   color.classList.add(blur);
+//   game.sounds.color.play();
+//   setTimeout(function () {
+//     color.classList.remove(blur);
+//   }, game.interval);
 // }
 
 // let oneShow = new CompShow(green, 'green-blur')
