@@ -120,19 +120,21 @@ function greenClick() {
       checkArray(player1.sequence, game.sequence)
       if (game.track == false) {
         document.getElementById('best-score').innerHTML = player1.score
-        alert(`Bad Choice. You have lost!`)
+        playAll()
         curPlayer(player2.name)
-        alert(`Player2, your turn`)
         game.interval = defaultGame.interval
         game.sequence = []
         game.score = 0
+        setTimeout(function () {
+          random()
+        }, game.interval)
       }
     }
   } else if (player2.name === game.currentPlayer) {
     player2.sequence.push(1)
     checkArray(player2.sequence, game.sequence)
     if (game.track == false) {
-      alert(`Bad Choice. You have lost!`)
+      playAll()
       if (player2.score > player1.score) {
         document.getElementById('best-score').innerHTML = player2.score
         alert(`${player2.name} you have the high score`)
@@ -153,19 +155,21 @@ function redClick() {
       checkArray(player1.sequence, game.sequence)
       if (game.track == false) {
         document.getElementById('best-score').innerHTML = player1.score
-        alert(`Bad Choice. You have lost!`)
+        playAll()
         curPlayer(player2.name)
-        alert(`Player2, your turn`)
         game.interval = defaultGame.interval
         game.sequence = []
         game.score = 0
+        setTimeout(function () {
+          random()
+        }, game.interval)
       }
     }
   } else if (player2.name === game.currentPlayer) {
     player2.sequence.push(2)
     checkArray(player1.sequence, game.sequence)
     if (game.track == false) {
-      alert(`Bad Choice. You have lost!`)
+      playAll()
       if (player2.score > player1.score) {
         document.getElementById('best-score').innerHTML = player2.score
         alert(`${player2.name} you have the high score`)
@@ -186,19 +190,21 @@ function yellowClick() {
       checkArray(player1.sequence, game.sequence)
       if (game.track == false) {
         document.getElementById('best-score').innerHTML = player1.score
-        alert(`Bad Choice. You have lost!`)
+        playAll()
         curPlayer(player2.name)
-        alert(`Player2, your turn`)
         game.interval = defaultGame.interval
         game.sequence = []
         game.score = 0
+        setTimeout(function () {
+          random()
+        }, game.interval)
       }
     }
   } else if (player2.name === game.currentPlayer) {
     player2.sequence.push(3)
     checkArray(player2.sequence, game.sequence)
     if (game.track == false) {
-      alert(`Bad Choice. You have lost!`)
+      playAll()
       if (player2.score > player1.score) {
         document.getElementById('best-score').innerHTML = player2.score
         alert(`${player2.name} you have the high score`)
@@ -219,19 +225,21 @@ function blueClick() {
       checkArray(player1.sequence, game.sequence)
       if (game.track == false) {
         document.getElementById('best-score').innerHTML = player1.score
-        alert(`Bad Choice. You have lost!`)
+        playAll()
         curPlayer(player2.name)
-        alert(`Player2, your turn`)
         game.interval = defaultGame.interval
         game.sequence = []
         game.score = 0
+        setTimeout(function () {
+          random()
+        }, game.interval)
       }
     }
   } else if (player2.name === game.currentPlayer) {
     player2.sequence.push(4)
     checkArray(player2.sequence, game.sequence)
     if (game.track == false) {
-      alert(`Bad Choice. You have lost!`)
+      playAll()
       if (player2.score > player1.score) {
         document.getElementById('best-score').innerHTML = player2.score
         alert(`${player2.name} you have the high score`)
@@ -345,6 +353,14 @@ function fourShow() {
   }, game.interval)
 }
 
+// show all colors at once
+function playAll() {
+  oneShow()
+  twoShow()
+  threeShow()
+  fourShow()
+}
+
 // offset variable
 let offset = 0
 
@@ -412,7 +428,7 @@ function checkArray(arr1, arr2) {
         game.track = false
       } else {
         game.track = true
-        if (player1.name === game.currentPlayer) {
+        if (player1.name === game.currentPlayer || player2.name === game.currentPlayer) {
           score()
           decreaseTimer()
           player1.sequence = []
@@ -421,12 +437,6 @@ function checkArray(arr1, arr2) {
           setTimeout(function () {
             computerPlay()
           }, game.interval)
-        } else {
-          score()
-          decreaseTimer()
-          player2.sequence = []
-          game.compTurn = false
-          console.log(game.compTurn)
         }
       }
     })
