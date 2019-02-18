@@ -6,11 +6,12 @@ This classic game of memory will test your skills in a progressively faster sequ
 [Trello](https://trello.com/b/Uao4ghMs/simon)
 
 # How to Play
-1. To Begin, press the Start button and enter in your name
-2. If there is no Player 2, press cancel
-3. Click the light after it has blinked
-4. Continue clicking the lights in sequence as they appear
-5. You will win the game when time has expired
+1. Click the level you want to play on the left of the screen
+2. To Begin, press the Start button and enter in your name
+3. If there is no Player 2, press cancel
+4. Click the light after it has blinked
+5. Continue clicking the lights in sequence as they appear
+6. Try to beat the high score
 
 # Wireframe
 
