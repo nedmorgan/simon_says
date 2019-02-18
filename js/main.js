@@ -16,12 +16,7 @@ let game = {
   sequence: [],
   track: true,
   compTurn: false,
-  sounds: {
-    green: new Audio('media/sfx_sounds_Blip1.wav'),
-    red: new Audio('media/sfx_sounds_Blip4.wav'),
-    yellow: new Audio('media/sfx_sounds_Blip8.wav'),
-    blue: new Audio('media/sfx_sounds_Blip10.wav')
-  }
+  flash: 0
 }
 
 // default variable for reset
@@ -36,9 +31,6 @@ let defaultGame = {
 let player1 = new Player()
 let player2 = new Player()
 
-// offset variable
-let offset = 0
-
 // button variables
 let startButton = document.getElementById('startButton')
 let resetButton = document.getElementById('resetButton')
@@ -48,6 +40,12 @@ const green = document.getElementById('green')
 const red = document.getElementById('red')
 const yellow = document.getElementById('yellow')
 const blue = document.getElementById('blue')
+
+// audio variables
+const greenAudio = new Audio('media/sfx_sounds_Blip1.wav')
+const redAudio = new Audio('media/sfx_sounds_Blip4.wav')
+const yellowAudio = new Audio('media/sfx_sounds_Blip8.wav')
+const blueAudio = new Audio('media/sfx_sounds_Blip10.wav')
 
 // set current player function
 function curPlayer(name) {
@@ -98,7 +96,7 @@ function decreaseTimer() {
 // the color will show and the sound will play when a color div is clicked
 function greenClick() {
   green.classList.add('green-blur')
-  game.sounds.green.play()
+  greenAudio.play()
   setTimeout(function () {
     green.classList.remove('green-blur')
   }, 250)
@@ -131,7 +129,7 @@ function greenClick() {
 
 function redClick() {
   red.classList.add('red-blur')
-  game.sounds.red.play();
+  redAudio.play();
   setTimeout(function () {
     red.classList.remove('red-blur')
   }, 250)
@@ -164,7 +162,7 @@ function redClick() {
 
 function yellowClick() {
   yellow.classList.add('yellow-blur')
-  game.sounds.yellow.play();
+  yellowAudio.play();
   setTimeout(function () {
     yellow.classList.remove('yellow-blur')
   }, 250)
@@ -197,7 +195,7 @@ function yellowClick() {
 
 function blueClick() {
   blue.classList.add('blue-blur')
-  game.sounds.blue.play();
+  blueAudio.play();
   setTimeout(function () {
     blue.classList.remove('blue-blur')
   }, 250)
@@ -228,10 +226,31 @@ function blueClick() {
   }
 }
 
+// attempt to refactor user color show and array push
+// class UserShow {
+//   constructor(color, blur, audio, num) {
+//     this.color = color
+//     this.blur = blur
+//     this.audio = audio
+//     this.num = num
+//     color.classList.add(blur);
+//     audio.play();
+//     setTimeout(function () {
+//       color.classList.remove(blur);
+//     }, game.interval);
+//     game.sequence.push(num);
+//   }
+// }
+
+// let greenShow = new UserShow(green, 'green-blur', greenAudio, 1)
+// let redShow = new UserShow(red, 'red-blur', redAudio, 2)
+// let yellowShow = new UserShow(yellow, 'yellow-blur', yellowAudio, 3)
+// let blueShow = new UserShow(blue, 'blue-blur', blueAudio, 4)
+
 // function to automatically have the color blur and sound play for initial instance of color in sequence
 function greenShow() {
   green.classList.add('green-blur')
-  game.sounds.green.play()
+  greenAudio.play()
   setTimeout(function () {
     green.classList.remove('green-blur')
   }, game.interval)
@@ -240,7 +259,7 @@ function greenShow() {
 
 function redShow() {
   red.classList.add('red-blur')
-  game.sounds.red.play()
+  redAudio.play()
   setTimeout(function () {
     red.classList.remove('red-blur')
   }, game.interval)
@@ -249,7 +268,7 @@ function redShow() {
 
 function yellowShow() {
   yellow.classList.add('yellow-blur')
-  game.sounds.yellow.play()
+  yellowAudio.play()
   setTimeout(function () {
     yellow.classList.remove('yellow-blur')
   }, game.interval)
@@ -258,17 +277,35 @@ function yellowShow() {
 
 function blueShow() {
   blue.classList.add('blue-blur')
-  game.sounds.blue.play()
+  blueAudio.play()
   setTimeout(function () {
     blue.classList.remove('blue-blur')
   }, game.interval)
   game.sequence.push(4)
 }
 
+// attempt to refactor computer color show function
+// class CompShow {
+//   constructor(color, blur) {
+//     this.color = color;
+//     this.blur = blur;
+//     color.classList.add(blur);
+//     game.sounds.color.play();
+//     setTimeout(function () {
+//       color.classList.remove(blur);
+//     }, game.interval);
+//   }
+// }
+
+// let oneShow = new CompShow(green, 'green-blur')
+// let twoShow = new CompShow(red, 'red-blur')
+// let threeShow = new CompShow(yellow, 'yellow-blur')
+// let fourShow = new CompShow(blue, 'blue-blur')
+
 // functions for computer to light up prior sequence of colors for player to complete
 function oneShow() {
   green.classList.add('green-blur')
-  game.sounds.green.play()
+  greenAudio.play()
   setTimeout(function () {
     green.classList.remove('green-blur')
   }, game.interval)
@@ -276,7 +313,7 @@ function oneShow() {
 
 function twoShow() {
   red.classList.add('red-blur')
-  game.sounds.red.play()
+  redAudio.play()
   setTimeout(function () {
     red.classList.remove('red-blur')
   }, game.interval)
@@ -284,7 +321,7 @@ function twoShow() {
 
 function threeShow() {
   yellow.classList.add('yellow-blur')
-  game.sounds.yellow.play()
+  yellowAudio.play()
   setTimeout(function () {
     yellow.classList.remove('yellow-blur')
   }, game.interval)
@@ -292,14 +329,18 @@ function threeShow() {
 
 function fourShow() {
   blue.classList.add('blue-blur')
-  game.sounds.blue.play()
+  blueAudio.play()
   setTimeout(function () {
     blue.classList.remove('blue-blur')
   }, game.interval)
 }
 
+// offset variable
+let offset = 0
+
 // check to see if we are repeating numbers
 let lastNum
+
 // function to math random through the game array of numbers
 function random() {
   let randomNum = Math.ceil(Math.random() * 4)
@@ -321,30 +362,35 @@ function random() {
 }
 
 // computer play sequence function
+// need to fix bug. looping over this twice.
 function computerPlay() {
-  game.sequence.forEach(function (el) {
+  for (let el = 0; el < game.sequence.length; el++) {
     setTimeout(function () {
-      if (el == 1) {
+      if (game.sequence[el] === 1) {
         oneShow()
-      }
-      if (el == 2) {
+        game.track = false
+      } else if (game.sequence[el] === 2) {
         twoShow()
-      }
-      if (el == 3) {
+        game.track = false
+      } else if (game.sequence[el] === 3) {
         threeShow()
-      }
-      if (el == 4) {
+        game.track = false
+      } else if (game.sequence[el] === 4) {
         fourShow()
+        game.track = false
       }
     }, game.interval + offset)
     offset += game.interval
     console.log(offset)
-  })
-  offset = 0
+    game.flash += 1
+    console.log(game.flash)
+  }
+  console.log(game.compTurn)
   if (game.sequence.length === game.score) {
     setTimeout(function () {
       random()
-    }, game.interval + 1500)
+      game.compTurn = false
+    }, game.interval + offset)
   }
 }
 
@@ -376,17 +422,6 @@ function checkArray(arr1, arr2) {
     })
   })
 }
-
-// function to activate game
-// function gameplay() {
-//   setTimeout(function () {
-//     computerPlay()
-//   }, 2000)
-//   game.compTurn = true
-// if (game.compTurn === true) {
-//   random()
-// }
-// }
 
 // function to reset the game to start from scratch
 function reset() {
