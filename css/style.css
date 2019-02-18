@@ -62,7 +62,7 @@ h3 {
 p {
   margin: 0;
   font-family: "Pricedown W01 Black",
-  sans-serif;
+    sans-serif;
   font-size: 5.5vw;
 }
 
@@ -150,7 +150,7 @@ p {
   border: 5px solid whitesmoke;
   border-radius: 10%;
   margin-top: 5vh;
-  margin-bottom: 5vh;
+  margin-bottom: 1vh;
 }
 
 .button:hover {

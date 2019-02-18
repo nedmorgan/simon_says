@@ -10,7 +10,7 @@ class Player {
 // game variable
 let game = {
   score: 0,
-  interval: 700,
+  interval: 750,
   players: [],
   currentPlayer: '',
   sequence: [],
@@ -24,7 +24,7 @@ let game = {
 let defaultGame = {
   player1: `Player 1`,
   player2: `Player 2`,
-  interval: 1000,
+  interval: 750,
   score: 0
 }
 
@@ -33,8 +33,11 @@ let player1 = new Player()
 let player2 = new Player()
 
 // button variables
-let startButton = document.getElementById('startButton')
-let resetButton = document.getElementById('resetButton')
+const startButton = document.getElementById('startButton')
+const resetButton = document.getElementById('resetButton')
+const easyButton = document.getElementById('easy')
+const mediumButton = document.getElementById('medium')
+const hardButton = document.getElementById('hard')
 
 // color div variables
 const green = document.getElementById('green')
@@ -499,4 +502,23 @@ startButton.addEventListener('click', function () {
 // event listener for reset button
 resetButton.addEventListener('click', function () {
   reset()
+})
+
+// event listener for easy, medium, and hard buttons
+easyButton.addEventListener('click', function () {
+  defaultGame.interval = 1000
+  game.interval = 1000
+  easyButton.setAttribute('style', 'border-color:red')
+})
+
+mediumButton.addEventListener('click', function () {
+  defaultGame.interval = 750
+  game.interval = 750
+  mediumButton.setAttribute('style', 'border-color:red')
+})
+
+hardButton.addEventListener('click', function () {
+  defaultGame.interval = 500
+  game.interval = 500
+  hardButton.setAttribute('style', 'border-color:red')
 })
