@@ -10,7 +10,7 @@ class Player {
 // game variable
 let game = {
   score: 0,
-  interval: 1000,
+  interval: 700,
   players: [],
   currentPlayer: '',
   sequence: [],
@@ -407,32 +407,29 @@ function random() {
 // }
 function computerPlay() {
   console.log('In computerPlay!')
+  game.currentIndex = 0
   game.gameInterval = setInterval(() => {
     console.log('game.sequence.length: ', game.sequence.length)
     console.log('game.currentIndex: ', game.currentIndex)
     console.log('game.sequence is: ', game.sequence)
+
     // console.log('player1.sequence: ', player1.sequence)
-    if (game.sequence[game.currentIndex] === 1) {
-      oneShow()
-    } else if (game.sequence[game.currentIndex] === 2) {
-      twoShow()
-    } else if (game.sequence[game.currentIndex] === 3) {
-      threeShow()
-    } else if (game.sequence[game.currentIndex] === 4) {
-      fourShow()
-    }
-
-    if ((game.sequence.length - 1) === game.currentIndex) {
+    if ((game.sequence.length - 1) !== game.currentIndex) {
+      if (game.sequence[game.currentIndex] === 1) {
+        oneShow()
+      } else if (game.sequence[game.currentIndex] === 2) {
+        twoShow()
+      } else if (game.sequence[game.currentIndex] === 3) {
+        threeShow()
+      } else if (game.sequence[game.currentIndex] === 4) {
+        fourShow()
+      }
+      console.log('About to increment the currentIndex')
+      game.currentIndex++
+    } else {
       random()
-      clearInterval(game.gameInterval)
-      return
+      return clearInterval(game.gameInterval)
     }
-
-
-    console.log('About to increment the currentIndex')
-
-    game.currentIndex++
-
   }, 800)
 
 
@@ -465,23 +462,24 @@ function computerPlay() {
 // }
 
 function checkArray(arr1, arr2) {
-  arr1.forEach((e1, i) => {
+  // arr1.forEach((e1, i) => {
+
+  // })
+
+  for (let i = 0; i < arr1.length; i++) {
     if (arr1[i] !== arr2[i]) {
       game.track = false
-    } else {
-      game.track = true
-      if (player1.name === game.currentPlayer || player2.name === game.currentPlayer) {
-        score()
-        player1.sequence = []
-        player2.sequence = []
-        game.compTurn = false
-        console.log(game.compTurn)
-        setTimeout(function () {
-          computerPlay()
-        }, game.interval)
-      }
+      return
     }
-  })
+  }
+
+  game.track = true
+  if (player1.name === game.currentPlayer || player2.name === game.currentPlayer) {
+    score()
+    player1.sequence = []
+    player2.sequence = []
+    computerPlay()
+  }
 }
 
 // function to reset the game to start from scratch
