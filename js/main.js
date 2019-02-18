@@ -1,6 +1,6 @@
 // player constructor
 class Player {
-  constructor(name) {
+  constructor (name) {
     this.name = name
     this.score = 0
     this.sequence = []
@@ -15,8 +15,7 @@ let game = {
   currentPlayer: '',
   sequence: [],
   track: true,
-  compTurn: false,
-  flash: 0
+  compTurn: false
 }
 
 // default variable for reset
@@ -72,11 +71,11 @@ function score() {
   if (player1.name === game.currentPlayer) {
     game.score = game.sequence.length
     player1.score = game.score
-    document.getElementById('one-score').innerHTML = player1.score;
+    document.getElementById('one-score').innerHTML = player1.score
   } else if (player2.name === game.currentPlayer) {
     game.score = game.sequence.length
     player2.score = game.score
-    document.getElementById('two-score').innerHTML = player2.score;
+    document.getElementById('two-score').innerHTML = player2.score
   }
 }
 
@@ -95,15 +94,6 @@ function input2() {
   game.players.push(player2.name)
   if (player2.name === '') {
     document.getElementById('player-two').setAttribute('style', 'display:none')
-  }
-}
-
-// function to decrease game interval
-function decreaseTimer() {
-  if (game.interval > 0) {
-    game.interval -= 150
-  } else if (game.interval <= 0) {
-    alert(`There are no move levels left. You've Won!`)
   }
 }
 
@@ -145,7 +135,7 @@ function greenClick() {
 
 function redClick() {
   red.classList.add('red-blur')
-  redAudio.play();
+  redAudio.play()
   setTimeout(function () {
     red.classList.remove('red-blur')
   }, 250)
@@ -180,7 +170,7 @@ function redClick() {
 
 function yellowClick() {
   yellow.classList.add('yellow-blur')
-  yellowAudio.play();
+  yellowAudio.play()
   setTimeout(function () {
     yellow.classList.remove('yellow-blur')
   }, 250)
@@ -215,7 +205,7 @@ function yellowClick() {
 
 function blueClick() {
   blue.classList.add('blue-blur')
-  blueAudio.play();
+  blueAudio.play()
   setTimeout(function () {
     blue.classList.remove('blue-blur')
   }, 250)
@@ -394,16 +384,12 @@ function computerPlay() {
     setTimeout(function () {
       if (game.sequence[el] === 1) {
         oneShow()
-        game.track = false
       } else if (game.sequence[el] === 2) {
         twoShow()
-        game.track = false
       } else if (game.sequence[el] === 3) {
         threeShow()
-        game.track = false
       } else if (game.sequence[el] === 4) {
         fourShow()
-        game.track = false
       }
     }, game.interval + offset)
     offset += game.interval
@@ -430,7 +416,6 @@ function checkArray(arr1, arr2) {
         game.track = true
         if (player1.name === game.currentPlayer || player2.name === game.currentPlayer) {
           score()
-          decreaseTimer()
           player1.sequence = []
           game.compTurn = false
           console.log(game.compTurn)
@@ -454,7 +439,9 @@ function reset() {
   document.getElementById('player-banner').innerHTML = ''
   document.getElementById('one-score').innerHTML = defaultGame.score
   document.getElementById('two-score').innerHTML = defaultGame.score
-  alert(`Press Start button to begin new game`)
+  input1()
+  input2()
+  random()
 }
 
 // event listener for each color click event
