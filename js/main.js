@@ -10,7 +10,7 @@ class Player {
 // game variable
 let game = {
   score: 0,
-  interval: 750,
+  interval: 500,
   players: [],
   currentPlayer: '',
   sequence: [],
@@ -24,7 +24,7 @@ let game = {
 let defaultGame = {
   player1: `Player 1`,
   player2: `Player 2`,
-  interval: 750,
+  interval: 500,
   score: 0
 }
 
@@ -50,20 +50,6 @@ const greenAudio = new Audio('media/sfx_sounds_Blip1.wav')
 const redAudio = new Audio('media/sfx_sounds_Blip4.wav')
 const yellowAudio = new Audio('media/sfx_sounds_Blip8.wav')
 const blueAudio = new Audio('media/sfx_sounds_Blip10.wav')
-
-// audio play functions
-// const greenPlay = function () {
-//   greenAudio.play()
-// }
-// const redPlay = function () {
-//   redAudio.play()
-// }
-// const yellowPlay = function () {
-//   yellowAudio.play()
-// }
-// const bluePlay = function () {
-//   blueAudio.play()
-// }
 
 // set current player function
 function curPlayer(name) {
@@ -258,6 +244,20 @@ function blueClick() {
     }
   }
 }
+
+// audio play functions
+// const greenPlay = function () {
+//   greenAudio.play()
+// }
+// const redPlay = function () {
+//   redAudio.play()
+// }
+// const yellowPlay = function () {
+//   yellowAudio.play()
+// }
+// const bluePlay = function () {
+//   blueAudio.play()
+// }
 
 // attempt to refactor user color show and array push
 // function UserShow(color, blur, audio, num) {
