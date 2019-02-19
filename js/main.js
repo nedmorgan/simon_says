@@ -372,9 +372,6 @@ function playAll() {
   fourShow()
 }
 
-// offset variable
-let offset = 0
-
 // check to see if we are repeating numbers
 let lastNum
 
@@ -426,32 +423,6 @@ function computerPlay() {
     }
   }, 800)
 }
-
-// function to check if array length is equal and then check if the arrays match
-// arr1 is players sequence array
-// arr2 is game sequence array
-// function checkArray(arr1, arr2) {
-//   arr1.forEach((e1) => {
-//     console.log(e1)
-//     return arr2.forEach((e2) => {
-//       console.log(e2)
-//       if (e1 !== e2) {
-//         game.track = false
-//       } else {
-//         game.track = true
-//         if (player1.name === game.currentPlayer || player2.name === game.currentPlayer) {
-//           score()
-//           player1.sequence = []
-//           game.compTurn = false
-//           console.log(game.compTurn)
-//           setTimeout(function () {
-//             computerPlay()
-//           }, game.interval)
-//         }
-//       }
-//     })
-//   })
-// }
 
 function checkArray(arr1, arr2) {
   for (let i = 0; i < arr1.length; i++) {
