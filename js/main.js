@@ -169,7 +169,7 @@ function redClick() {
   } else if (player2.name === game.currentPlayer) {
     player2.sequence.push(2)
     if (player2.sequence.length === game.sequence.length) {
-      checkArray(player1.sequence, game.sequence)
+      checkArray(player2.sequence, game.sequence)
       if (game.track == false) {
         playAll()
         if (player2.score > player1.score) {
