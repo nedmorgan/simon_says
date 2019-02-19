@@ -5,7 +5,7 @@ This classic game of memory will test your skills in a progressively faster sequ
 
 [Trello](https://trello.com/b/Uao4ghMs/simon)
 
-# How to Play
+## How to Play
 1. Click the level you want to play on the left of the screen
 2. To Begin, press the Start button and enter in your name
 3. If there is no Player 2, press cancel
@@ -13,7 +13,7 @@ This classic game of memory will test your skills in a progressively faster sequ
 5. Continue clicking the lights in sequence as they appear
 6. Try to beat the high score
 
-# Wireframe
+## Wireframe
 
 ### Basic Layout Design
 <img src='media/basic_layout.jpg' alt='basic layout design' height=250 width=200/>
@@ -21,4 +21,13 @@ This classic game of memory will test your skills in a progressively faster sequ
 ### Advanced Layout Design
 <img src='media/advanced_layout.jpg' alt='advanced layout design' height=250 width=200/>
 
-# Features
+## Technologies
+
+### The following technologies were used in the production of this Simon game
+
+* Javascript
+* CSS
+
+## Features and Future Improvements
+
+Currently, the user is able to select 

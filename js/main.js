@@ -97,8 +97,8 @@ function input2() {
   player2.name = prompt(`Player 2, please input your name.`)
   document.getElementById('player-two').innerHTML = player2.name
   game.players.push(player2.name)
-  if (player2.name === '') {
-    document.getElementById('player-two').setAttribute('style', 'display:none')
+  if (player2.name === null) {
+    document.querySelector('.player2-score').setAttribute('style', 'visibility:hidden')
   }
 }
 
@@ -379,7 +379,6 @@ let lastNum
 function random() {
   let randomNum = Math.ceil(Math.random() * 4)
   if (lastNum == randomNum) {
-    console.log(`That was the same number`)
     random()
   } else {
     if (randomNum === 1) {
@@ -397,14 +396,8 @@ function random() {
 
 // function for the computer to run and check the colors
 function computerPlay() {
-  console.log('In computerPlay!')
   game.currentIndex = 0
   game.gameInterval = setInterval(() => {
-    console.log('game.sequence.length: ', game.sequence.length)
-    console.log('game.currentIndex: ', game.currentIndex)
-    console.log('game.sequence is: ', game.sequence)
-
-    // console.log('player1.sequence: ', player1.sequence)
     if (game.currentIndex < game.sequence.length) {
       if (game.sequence[game.currentIndex] === 1) {
         oneShow()
@@ -415,7 +408,6 @@ function computerPlay() {
       } else if (game.sequence[game.currentIndex] === 4) {
         fourShow()
       }
-      console.log('About to increment the currentIndex')
       game.currentIndex++
     } else {
       random()
@@ -477,24 +469,24 @@ resetButton.addEventListener('click', function () {
 
 // event listener for easy, medium, and hard buttons
 easyButton.addEventListener('click', function () {
-  defaultGame.interval = 1000
-  game.interval = 1000
+  defaultGame.interval = 750
+  game.interval = 750
   easyButton.setAttribute('style', 'border-color:red')
   mediumButton.style.removeProperty('border-color')
   hardButton.style.removeProperty('border-color')
 })
 
 mediumButton.addEventListener('click', function () {
-  defaultGame.interval = 750
-  game.interval = 750
+  defaultGame.interval = 500
+  game.interval = 500
   mediumButton.setAttribute('style', 'border-color:red')
   easyButton.style.removeProperty('border-color')
   hardButton.style.removeProperty('border-color')
 })
 
 hardButton.addEventListener('click', function () {
-  defaultGame.interval = 500
-  game.interval = 500
+  defaultGame.interval = 250
+  game.interval = 250
   hardButton.setAttribute('style', 'border-color:red')
   mediumButton.style.removeProperty('border-color')
   easyButton.style.removeProperty('border-color')
