@@ -372,13 +372,14 @@ function playAll() {
   fourShow()
 }
 
-// check to see if we are repeating numbers
-let lastNum
-
 // function to math random through the game array of numbers
 function random() {
   let randomNum = Math.ceil(Math.random() * 4)
-  if (lastNum == randomNum) {
+  let lastNum
+  if (lastNum === randomNum) {
+    console.log('found a match')
+    console.log(lastNum)
+    console.log(randomNum)
     random()
   } else {
     if (randomNum === 1) {
