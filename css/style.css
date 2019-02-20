@@ -14,7 +14,7 @@ body {
 
 .page-top {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .score-flex {
@@ -22,9 +22,15 @@ body {
   justify-content: flex-end;
 }
 
+.sub-score-flex {
+  display: flex;
+  flex-direction: column;
+}
+
 .score,
-.high-score {
-  width: 15vw;
+.high-score,
+.level-box {
+  width: 20vw;
   font-family: "Pricedown W01 Black",
     sans-serif;
   font-size: 5vw;
