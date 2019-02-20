@@ -389,8 +389,8 @@ function random() {
     } else if (randomNum === 4) {
       blueShow()
     }
+    lastNum = randomNum
   }
-  lastNum = randomNum
 }
 
 // function for the computer to run and check the colors
