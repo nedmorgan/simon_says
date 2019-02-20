@@ -436,7 +436,6 @@ function reset() {
   game.sequence = []
   player1.sequence = []
   player2.sequence = []
-  game.interval = defaultGame.interval
   document.getElementById('player-one').innerHTML = defaultGame.player1
   document.getElementById('player-two').innerHTML = defaultGame.player2
   document.getElementById('player-banner').innerHTML = ''
