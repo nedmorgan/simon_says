@@ -103,11 +103,12 @@ p {
 .game-color {
   height: 20vw;
   width: 20vw;
-  border-radius: 50%;
+  border-radius: 10%;
 }
 
 #yellow {
   border: 8px solid yellow;
+  border-bottom-left-radius: 100%;
 }
 
 .yellow-blur {
@@ -117,6 +118,7 @@ p {
 
 #red {
   border: 8px solid red;
+  border-top-right-radius: 100%;
 }
 
 .red-blur {
@@ -126,6 +128,7 @@ p {
 
 #green {
   border: 8px solid green;
+  border-top-left-radius: 100%;
 }
 
 .green-blur {
@@ -135,6 +138,7 @@ p {
 
 #blue {
   border: 8px solid blue;
+  border-bottom-right-radius: 100%;
 }
 
 .blue-blur {
