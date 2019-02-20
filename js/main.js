@@ -413,7 +413,7 @@ function computerPlay() {
       random()
       return clearInterval(game.gameInterval)
     }
-  }, 800)
+  }, game.interval)
 }
 
 function checkArray(arr1, arr2) {
