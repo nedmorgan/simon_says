@@ -371,11 +371,12 @@ function playAll() {
   threeShow()
   fourShow()
 }
+//last number variable
+let lastNum
 
 // function to math random through the game array of numbers
 function random() {
   let randomNum = Math.ceil(Math.random() * 4)
-  let lastNum
   if (lastNum === randomNum) {
     random()
   } else {
