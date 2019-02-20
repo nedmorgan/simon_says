@@ -377,9 +377,6 @@ function random() {
   let randomNum = Math.ceil(Math.random() * 4)
   let lastNum
   if (lastNum === randomNum) {
-    console.log('found a match')
-    console.log(lastNum)
-    console.log(randomNum)
     random()
   } else {
     if (randomNum === 1) {
