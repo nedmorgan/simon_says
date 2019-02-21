@@ -31,7 +31,7 @@ body {
 .high-score,
 .level-box {
   width: 20vw;
-  font-family: "Pricedown W01 Black",
+  font-family: 'Lato',
     sans-serif;
   font-size: 5vw;
   color: whitesmoke;
@@ -57,7 +57,7 @@ h1 {
 
 h3 {
   color: whitesmoke;
-  font-family: "Pricedown W01 Black",
+  font-family: 'Lato',
     sans-serif;
   font-size: 4vw;
   text-align: center;
@@ -68,7 +68,7 @@ h3 {
 
 p {
   margin: 0;
-  font-family: "Pricedown W01 Black",
+  font-family: 'Lato',
     sans-serif;
   font-size: 5.5vw;
 }
@@ -88,6 +88,10 @@ p {
   font-size: 5.5vw;
   color: whitesmoke;
   text-align: center;
+}
+
+.player-title {
+  visibility: hidden;
 }
 
 .game-container {
@@ -154,7 +158,7 @@ p {
 .level-button {
   background-color: black;
   color: whitesmoke;
-  font-family: "Pricedown W01 Black",
+  font-family: 'Lato',
     sans-serif;
   font-size: 2vw;
   padding: 1vh 3vw;
@@ -167,7 +171,7 @@ p {
 .button {
   background-color: black;
   color: whitesmoke;
-  font-family: "Pricedown W01 Black",
+  font-family: 'Lato',
     sans-serif;
   font-size: 4vw;
   padding: 3vh 5vw;
