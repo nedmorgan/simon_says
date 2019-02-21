@@ -74,6 +74,7 @@ function score() {
 function input1() {
   player1.name = prompt('Player 1, please input your name.')
   document.getElementById('player-one').innerHTML = player1.name
+  document.querySelector('.player-title').removeAttribute('class')
   game.players.push(player1.name)
   curPlayer(player1.name)
 }

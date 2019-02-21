@@ -83,7 +83,7 @@ p {
 
 .current-player {
   width: 40vw;
-  font-family: "Pricedown W01 Black",
+  font-family: "Lato",
     sans-serif;
   font-size: 5.5vw;
   color: whitesmoke;
@@ -174,7 +174,7 @@ p {
   font-family: 'Lato',
     sans-serif;
   font-size: 4vw;
-  padding: 3vh 5vw;
+  padding: 1vh 4vw;
   border: 5px solid whitesmoke;
   border-radius: 10%;
   margin-top: 5vh;
