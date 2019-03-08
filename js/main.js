@@ -100,7 +100,7 @@ function greenClick() {
     player1.sequence.push(1)
     if (player1.sequence.length === game.sequence.length) {
       checkArray(player1.sequence, game.sequence)
-      if (game.track == false) {
+      if (game.track === false) {
         document.getElementById('best-score').innerHTML = player1.score
         playAll()
         if (player2.name !== null) {
@@ -118,7 +118,7 @@ function greenClick() {
     player2.sequence.push(1)
     if (player2.sequence.length === game.sequence.length) {
       checkArray(player2.sequence, game.sequence)
-      if (game.track == false) {
+      if (game.track === false) {
         playAll()
         if (player2.score > player1.score) {
           document.getElementById('best-score').innerHTML = player2.score
@@ -139,7 +139,7 @@ function redClick() {
     player1.sequence.push(2)
     if (player1.sequence.length === game.sequence.length) {
       checkArray(player1.sequence, game.sequence)
-      if (game.track == false) {
+      if (game.track === false) {
         document.getElementById('best-score').innerHTML = player1.score
         playAll()
         if (player2.name !== null) {
@@ -157,7 +157,7 @@ function redClick() {
     player2.sequence.push(2)
     if (player2.sequence.length === game.sequence.length) {
       checkArray(player2.sequence, game.sequence)
-      if (game.track == false) {
+      if (game.track === false) {
         playAll()
         if (player2.score > player1.score) {
           document.getElementById('best-score').innerHTML = player2.score
@@ -178,7 +178,7 @@ function yellowClick() {
     player1.sequence.push(3)
     if (player1.sequence.length === game.sequence.length) {
       checkArray(player1.sequence, game.sequence)
-      if (game.track == false) {
+      if (game.track === false) {
         document.getElementById('best-score').innerHTML = player1.score
         playAll()
         if (player2.name !== null) {
@@ -196,7 +196,7 @@ function yellowClick() {
     player2.sequence.push(3)
     if (player2.sequence.length === game.sequence.length) {
       checkArray(player2.sequence, game.sequence)
-      if (game.track == false) {
+      if (game.track === false) {
         playAll()
         if (player2.score > player1.score) {
           document.getElementById('best-score').innerHTML = player2.score
@@ -217,7 +217,7 @@ function blueClick() {
     player1.sequence.push(4)
     if (player1.sequence.length === game.sequence.length) {
       checkArray(player1.sequence, game.sequence)
-      if (game.track == false) {
+      if (game.track === false) {
         document.getElementById('best-score').innerHTML = player1.score
         playAll()
         if (player2.name !== null) {
@@ -235,7 +235,7 @@ function blueClick() {
     player2.sequence.push(4)
     if (player2.sequence.length === game.sequence.length) {
       checkArray(player2.sequence, game.sequence)
-      if (game.track == false) {
+      if (game.track === false) {
         playAll()
         if (player2.score > player1.score) {
           document.getElementById('best-score').innerHTML = player2.score
@@ -372,7 +372,7 @@ function playAll() {
   threeShow()
   fourShow()
 }
-//last number variable
+// last number variable
 let lastNum
 
 // function to math random through the game array of numbers
