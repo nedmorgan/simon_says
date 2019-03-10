@@ -187,3 +187,23 @@ p {
   color: black;
   cursor: pointer;
 }
+
+.page-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 2vw;
+}
+
+.footer-copyright {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.5vw;
+  color: white;
+}
+
+.footer-link {
+  color: blue;
+}
+
+.footer-link:hover {
+  color: whitesmoke
+}
