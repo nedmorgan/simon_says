@@ -18,11 +18,8 @@ ___
 ## Wireframe:
 ___
 
-### Basic Layout Design
-<img src='media/basic_layout.jpg' alt='basic layout design' height=250 width=200/>
-
-### Advanced Layout Design
-<img src='media/advanced_layout.jpg' alt='advanced layout design' height=250 width=200/>
+### Game Design
+<img src='media/simon_wireframe.png' alt='basic layout design' height=250 width=325/>
 
 ## Technologies:
 ___
