@@ -74,9 +74,10 @@ function score() {
 function input1() {
   player1.name = prompt('Player 1, please input your name.')
   document.getElementById('player-one').innerHTML = player1.name
-  document.querySelector('.player-title').removeAttribute('class')
+  document.querySelector('.player-title').setAttribute('style', 'visibility:visible')
   game.players.push(player1.name)
   curPlayer(player1.name)
+  input2()
 }
 
 // input for player 2 and if not then take away player 2
@@ -246,39 +247,6 @@ function blueClick() {
   }
 }
 
-// audio play functions
-// const greenPlay = function () {
-//   greenAudio.play()
-// }
-// const redPlay = function () {
-//   redAudio.play()
-// }
-// const yellowPlay = function () {
-//   yellowAudio.play()
-// }
-// const bluePlay = function () {
-//   blueAudio.play()
-// }
-
-// attempt to refactor user color show and array push
-// function UserShow(color, blur, audio, num) {
-//   this.color = color
-//   this.blur = blur
-//   this.audio = audio
-//   this.num = num
-//   color.classList.add(blur)
-//   audio
-//   setTimeout(function () {
-//     color.classList.remove(blur)
-//   }, game.interval)
-//   game.sequence.push(num)
-// }
-
-// let greenShow = new UserShow(green, 'green-blur', greenPlay(), 1)
-// let redShow = new UserShow(red, 'red-blur', redPlay(), 2)
-// let yellowShow = new UserShow(yellow, 'yellow-blur', yellowPlay(), 3)
-// let blueShow = new UserShow(blue, 'blue-blur', bluePlay(), 4)
-
 // function to automatically have the color blur and sound play for initial instance of color in sequence
 function greenShow() {
   green.classList.add('green-blur')
@@ -315,22 +283,6 @@ function blueShow() {
   }, game.interval)
   game.sequence.push(4)
 }
-
-// attempt to refactor computer color show function
-// function CompShow(color, blur) {
-//   this.color = color;
-//   this.blur = blur;
-//   color.classList.add(blur);
-//   game.sounds.color.play();
-//   setTimeout(function () {
-//     color.classList.remove(blur);
-//   }, game.interval);
-// }
-
-// let oneShow = new CompShow(green, 'green-blur')
-// let twoShow = new CompShow(red, 'red-blur')
-// let threeShow = new CompShow(yellow, 'yellow-blur')
-// let fourShow = new CompShow(blue, 'blue-blur')
 
 // functions for computer to light up prior sequence of colors for player to complete
 function oneShow() {
@@ -440,11 +392,11 @@ function reset() {
   player2.sequence = []
   document.getElementById('player-one').innerHTML = defaultGame.player1
   document.getElementById('player-two').innerHTML = defaultGame.player2
+  document.querySelector('.player2-score').setAttribute('style', 'visibility:visible')
   document.getElementById('player-banner').innerHTML = ''
   document.getElementById('one-score').innerHTML = defaultGame.score
   document.getElementById('two-score').innerHTML = defaultGame.score
   input1()
-  input2()
   random()
 }
 
@@ -457,7 +409,6 @@ blue.addEventListener('click', blueClick)
 // event listener for start button
 startButton.addEventListener('click', function () {
   input1()
-  input2()
   random()
 })
 
